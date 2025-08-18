@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 1 Domain 1: Mobile Devices</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .domain-info {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+
+        .objective-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+        }
+
+        .tab-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        .learning-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
+            min-height: 600px;
+        }
+
+        .objective-content {
+            display: none;
+        }
+
+        .objective-content.active {
+            display: block;
+        }
+
+        .objective-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .objective-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .objective-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content-sections {
+            display: grid;
+            gap: 25px;
+        }
+
+        .section-card {
+            border: 2px solid #e1e8ed;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .topic-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .topic-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .topic-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .topic-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .interactive-section {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quiz-option {
+            background: white;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: #f0f8ff;
+            border-color: #2196f3;
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .scenario-box {
+            background: linear-gradient(135deg, #fff3e0, #ffcc80);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .scenario-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #e65100;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .term-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: scale(1.05);
+        }
+
+        .term-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .term-definition {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .study-tip {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .tip-icon {
+            color: #f57c00;
+            margin-right: 10px;
+        }
+
+        .lab-activity {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .objective-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-button {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>CompTIA A+ Core 1 Domain 1</h1>
+            <p class="subtitle">Mobile Devices (13% of Exam) - 220-1201</p>
+            <div class="domain-info">
+                <strong>Learning Objectives:</strong> Install, configure, and maintain mobile devices including laptops, smartphones, and tablets. Understand connectivity options, accessories, and troubleshooting techniques for optimal performance in dynamic IT environments.
+            </div>
+        </header>
+
+        <div class="objective-tabs">
+            <button class="tab-button active" onclick="showObjective('1-1')">1.1 Laptop Hardware</button>
+            <button class="tab-button" onclick="showObjective('1-2')">1.2 Display Components</button>
+            <button class="tab-button" onclick="showObjective('1-3')">1.3 Accessories & Ports</button>
+            <button class="tab-button" onclick="showObjective('1-4')">1.4 Network Connectivity</button>
+            <button class="tab-button" onclick="showObjective('summary')">Domain Summary</button>
+        </div>
+
+        <div class="learning-container">
+            <!-- Objective 1.1: Laptop Hardware -->
+            <div id="1-1" class="objective-content active">
+                <div class="objective-header">
+                    <h2 class="objective-title">1.1 Given a scenario, install and configure laptop hardware and components</h2>
+                    <p class="objective-description">Master laptop hardware installation, configuration, and maintenance</p>
+                </div>
+
+                <div class="content-sections">
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🔧</span>
+                            Hardware Components
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item" onclick="showDetails('keyboard')">
+                                <div class="topic-name">Keyboard</div>
+                                <div class="topic-description">Membrane vs mechanical, function keys, backlight</div>
+                            </div>
+                            <div class="topic-item" onclick="showDetails('memory')">
+                                <div class="topic-name">Hard Drive</div>
+                                <div class="topic-description">2.5" form factor, SATA vs NVMe, installation</div>
+                            </div>
+                            <div class="topic-item" onclick="showDetails('memory')">
+                                <div class="topic-name">Memory (RAM)</div>
+                                <div class="topic-description">SO-DIMM, DDR4/DDR5, installation procedures</div>
+                            </div>
+                            <div class="topic-item" onclick="showDetails('smart-card')">
+                                <div class="topic-name">Smart Card Reader</div>
+                                <div class="topic-description">Authentication, CAC/PIV cards, configuration</div>
+                            </div>
+                            <div class="topic-item" onclick="showDetails('optical')">
+                                <div class="topic-name">Optical Drive</div>
+                                <div class="topic-description">DVD/Blu-ray, external vs internal, USB connection</div>
+                            </div>
+                            <div class="topic-item" onclick="showDetails('wireless')">
+                                <div class="topic-name">Wireless Card</div>
+                                <div class="topic-description">802.11 standards, antenna placement, M.2 form factor</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">📱</span>
+                            Mobile-Specific Hardware
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">Battery</div>
+                                <div class="topic-description">Li-ion technology, replacement procedures, calibration</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Inverter</div>
+                                <div class="topic-description">LCD backlight power, troubleshooting dim displays</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">DC Jack</div>
+                                <div class="topic-description">Power input connector, charging issues, replacement</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Speakers</div>
+                                <div class="topic-description">Built-in audio, driver configuration, troubleshooting</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-section">
+                        <h3><span class="section-icon">🔍</span> Interactive Component Identification</h3>
+                        <p>Click on laptop components to learn more about their function and installation:</p>
+                        <div style="text-align: center; margin: 20px 0;">
+                            <div style="background: #f0f0f0; padding: 30px; border-radius: 15px; display: inline-block;">
+                                <div style="font-size: 100px; color: #667eea;">💻</div>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px;">
+                                    <button class="btn-primary" onclick="showComponentInfo('screen')">Screen/Display</button>
+                                    <button class="btn-primary" onclick="showComponentInfo('keyboard')">Keyboard</button>
+                                    <button class="btn-primary" onclick="showComponentInfo('trackpad')">Trackpad</button>
+                                    <button class="btn-primary" onclick="showComponentInfo('battery')">Battery</button>
+                                    <button class="btn-primary" onclick="showComponentInfo('ram')">RAM</button>
+                                    <button class="btn-primary" onclick="showComponentInfo('storage')">Storage</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="component-info" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; display: none;">
+                            <!-- Component information will be displayed here -->
+                        </div>
+                    </div>
+
+                    <div class="quiz-section">
+                        <h3><span class="section-icon">❓</span> Knowledge Check</h3>
+                        <div class="quiz-question">
+                            Which memory type is commonly used in laptops?
+                        </div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">A) DIMM</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, true)">B) SO-DIMM</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">C) SIMM</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">D) RIMM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objective 1.2: Display Components -->
+            <div id="1-2" class="objective-content">
+                <div class="objective-header">
+                    <h2 class="objective-title">1.2 Compare and contrast the display components of mobile devices</h2>
+                    <p class="objective-description">Understand display technologies, characteristics, and troubleshooting</p>
+                </div>
+
+                <div class="content-sections">
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🖥️</span>
+                            Display Types
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">LCD (Liquid Crystal Display)</div>
+                                <div class="topic-description">Most common, requires backlight, good power efficiency</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">OLED (Organic LED)</div>
+                                <div class="topic-description">Self-illuminating pixels, true blacks, flexible displays</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">LED</div>
+                                <div class="topic-description">LCD with LED backlight, energy efficient, bright</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">IPS (In-Plane Switching)</div>
+                                <div class="topic-description">Wide viewing angles, accurate colors, slower response</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">TN (Twisted Nematic)</div>
+                                <div class="topic-description">Fast response time, lower cost, limited viewing angles</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">VA (Vertical Alignment)</div>
+                                <div class="topic-description">High contrast ratio, moderate response time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">📐</span>
+                            Mobile Display Characteristics
+                        </h3>
+                        <div class="key-terms">
+                            <div class="term-card">
+                                <div class="term-title">Refresh Rate</div>
+                                <div class="term-definition">60Hz, 90Hz, 120Hz - how often display updates per second</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Resolution</div>
+                                <div class="term-definition">720p, 1080p, 1440p, 4K - pixel density and clarity</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Brightness</div>
+                                <div class="term-definition">Measured in nits, outdoor visibility, power consumption</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Contrast Ratio</div>
+                                <div class="term-definition">Difference between brightest white and darkest black</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Color Gamut</div>
+                                <div class="term-definition">Range of colors display can reproduce (sRGB, DCI-P3)</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Viewing Angle</div>
+                                <div class="term-definition">How far off-center you can view without distortion</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🔧</span>
+                            Display Components
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">Digitizer</div>
+                                <div class="topic-description">Touch input layer, converts touch to digital signals</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Touchscreen</div>
+                                <div class="topic-description">Capacitive vs resistive, multi-touch support</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Inverter</div>
+                                <div class="topic-description">Converts DC to AC for LCD backlights (older displays)</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Backlight</div>
+                                <div class="topic-description">LED strips or arrays, provides illumination for LCD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="study-tip">
+                        <span class="tip-icon">💡</span>
+                        <strong>Study Tip:</strong> Remember that OLED displays don't need backlights because each pixel emits its own light. This is why OLED phones can have "always-on" displays with minimal battery drain.
+                    </div>
+
+                    <div class="quiz-section">
+                        <h3><span class="section-icon">❓</span> Display Technology Quiz</h3>
+                        <div class="quiz-question">
+                            Which display technology provides the best contrast ratio?
+                        </div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">A) TN</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">B) IPS</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, true)">C) OLED</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">D) VA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objective 1.3: Accessories & Ports -->
+            <div id="1-3" class="objective-content">
+                <div class="objective-header">
+                    <h2 class="objective-title">1.3 Given a scenario, set up and configure accessories and ports of mobile devices</h2>
+                    <p class="objective-description">Configure connections, accessories, and port management</p>
+                </div>
+
+                <div class="content-sections">
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🔌</span>
+                            Connection Types
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">USB-C</div>
+                                <div class="topic-description">Reversible, power delivery, data transfer, video output</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Lightning</div>
+                                <div class="topic-description">Apple proprietary, 8-pin connector, fast charging</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Micro-USB</div>
+                                <div class="topic-description">Older Android standard, charging and data</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Proprietary</div>
+                                <div class="topic-description">Vendor-specific connectors, specialized functions</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🎧</span>
+                            Accessories
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">Touch Pens/Stylus</div>
+                                <div class="topic-description">Active vs passive, pressure sensitivity, palm rejection</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Headsets</div>
+                                <div class="topic-description">Wired vs wireless, noise cancellation, microphone</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Speakers</div>
+                                <div class="topic-description">Bluetooth pairing, audio codecs, portable vs docking</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Webcam</div>
+                                <div class="topic-description">External cameras, USB connection, video conferencing</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Docking Station</div>
+                                <div class="topic-description">Port replication, charging, multiple monitor support</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Port Replicator</div>
+                                <div class="topic-description">Basic port expansion, USB hub functionality</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🔋</span>
+                            Power Management
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">Trackpad Configuration</div>
+                                <div class="topic-description">Sensitivity, gestures, click pressure, palm detection</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Keyboard Backlight</div>
+                                <div class="topic-description">Brightness levels, timeout settings, color options</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Near-field Scanner Features</div>
+                                <div class="topic-description">NFC configuration, payment systems, data transfer</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-activity">
+                        <h3><span class="section-icon">🧪</span> Hands-On Lab: Docking Station Setup</h3>
+                        <p><strong>Scenario:</strong> Configure a laptop docking station for a remote worker who needs multiple monitors and peripherals.</p>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Connect laptop to docking station via USB-C or proprietary connector</li>
+                            <li>Configure display settings for dual monitor setup</li>
+                            <li>Test USB peripherals (mouse, keyboard, external storage)</li>
+                            <li>Verify network connectivity through docking station</li>
+                            <li>Configure power management settings</li>
+                        </ol>
+                        <button class="btn-primary" onclick="toggleDetails('lab-solution')">Show Solution</button>
+                        <div id="lab-solution" style="display: none; margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 8px;">
+                            <strong>Solution Steps:</strong><br>
+                            1. Install manufacturer's docking station drivers<br>
+                            2. Use Windows Display Settings to configure extended desktop<br>
+                            3. Set primary monitor and resolution preferences<br>
+                            4. Test all connected USB devices for proper recognition<br>
+                            5. Configure network adapter priority if multiple connections exist
+                        </div>
+                    </div>
+
+                    <div class="quiz-section">
+                        <h3><span class="section-icon">❓</span> Accessories Quiz</h3>
+                        <div class="quiz-question">
+                            What is the primary advantage of USB-C over micro-USB?
+                        </div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">A) Smaller size</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, true)">B) Reversible connection and power delivery</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">C) Better compatibility</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">D) Lower cost</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objective 1.4: Network Connectivity -->
+            <div id="1-4" class="objective-content">
+                <div class="objective-header">
+                    <h2 class="objective-title">1.4 Given a scenario, configure basic mobile device network connectivity and application support</h2>
+                    <p class="objective-description">Establish and manage network connections and mobile applications</p>
+                </div>
+
+                <div class="content-sections">
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">📶</span>
+                            Wireless/Cellular Data Network
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">3G/4G/5G</div>
+                                <div class="topic-description">Cellular standards, data speeds, coverage areas</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Hotspot</div>
+                                <div class="topic-description">Mobile hotspot configuration, data sharing limits</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Wi-Fi</div>
+                                <div class="topic-description">802.11 standards, WPA3 security, network priorities</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">SIM/eSIM</div>
+                                <div class="topic-description">Subscriber Identity Module, embedded SIM technology</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🔗</span>
+                            Bluetooth Configuration
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">Enable Bluetooth</div>
+                                <div class="topic-description">Power management, discovery mode, visibility settings</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Enable Pairing</div>
+                                <div class="topic-description">Discoverable mode, security levels, timeout settings</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Find Device for Pairing</div>
+                                <div class="topic-description">Device discovery, proximity requirements, compatibility</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">PIN Code Entry</div>
+                                <div class="topic-description">Numeric codes, passkey confirmation, security protocols</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Test Connectivity</div>
+                                <div class="topic-description">Connection verification, audio/data testing, troubleshooting</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">📍</span>
+                            Location Services
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">GPS Services</div>
+                                <div class="topic-description">Satellite positioning, accuracy levels, battery impact</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Cellular Location Services</div>
+                                <div class="topic-description">Tower triangulation, approximate positioning, indoor use</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🏢</span>
+                            Mobile Device Management (MDM)
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">Corporate Configuration</div>
+                                <div class="topic-description">Company-owned devices, full management control</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">BYOD (Bring Your Own Device)</div>
+                                <div class="topic-description">Personal devices, limited corporate access</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Policy Enforcement</div>
+                                <div class="topic-description">Security policies, compliance monitoring, remote actions</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Corporate Applications</div>
+                                <div class="topic-description">App deployment, licensing, update management</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🔄</span>
+                            Mobile Device Synchronization
+                        </h3>
+                        <div class="topic-grid">
+                            <div class="topic-item">
+                                <div class="topic-name">Data Caps Recognition</div>
+                                <div class="topic-description">Monthly limits, overage charges, data monitoring</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Calendar Sync</div>
+                                <div class="topic-description">Exchange, Google Calendar, iCloud integration</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Contacts Sync</div>
+                                <div class="topic-description">Address book integration, duplicate management</div>
+                            </div>
+                            <div class="topic-item">
+                                <div class="topic-name">Business Applications</div>
+                                <div class="topic-description">Mail sync, cloud storage access, productivity apps</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scenario-box">
+                        <div class="scenario-title">Real-World Scenario</div>
+                        <p><strong>Challenge:</strong> A sales representative needs to configure their smartphone for corporate email access while maintaining personal use. The company requires specific security policies and app management.</p>
+                        <br>
+                        <p><strong>Solution Steps:</strong></p>
+                        <ol style="margin-left: 20px;">
+                            <li>Enroll device in corporate MDM system</li>
+                            <li>Configure work profile (Android) or managed Apple ID (iOS)</li>
+                            <li>Install corporate email certificate and configure Exchange ActiveSync</li>
+                            <li>Set up calendar and contacts synchronization</li>
+                            <li>Configure VPN access for secure corporate network connection</li>
+                            <li>Install required business applications through corporate app store</li>
+                        </ol>
+                    </div>
+
+                    <div class="quiz-section">
+                        <h3><span class="section-icon">❓</span> Network Connectivity Quiz</h3>
+                        <div class="quiz-question">
+                            What is the primary difference between Corporate and BYOD MDM configurations?
+                        </div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">A) Network speed</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, true)">B) Level of management control</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">C) Cost to the user</li>
+                            <li class="quiz-option" onclick="checkAnswer(this, false)">D) Device compatibility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain Summary -->
+            <div id="summary" class="objective-content">
+                <div class="objective-header">
+                    <h2 class="objective-title">Domain 1 Summary: Mobile Devices</h2>
+                    <p class="objective-description">Review key concepts and prepare for exam success</p>
+                </div>
+
+                <div class="content-sections">
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">📊</span>
+                            Domain Weight & Focus
+                        </h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 13%;"></div>
+                        </div>
+                        <p style="text-align: center; margin-top: 10px;"><strong>13% of Total Exam</strong></p>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <div style="display: inline-block; background: #f8f9fa; padding: 20px; border-radius: 15px;">
+                                <h4>Key Changes in 220-1201:</h4>
+                                <ul style="text-align: left; margin-top: 10px;">
+                                    <li>Enhanced SIM/eSIM coverage</li>
+                                    <li>Expanded MDM policy enforcement</li>
+                                    <li>Updated display technology focus</li>
+                                    <li>Increased emphasis on business applications</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">🎯</span>
+                            Critical Exam Topics
+                        </h3>
+                        <div class="key-terms">
+                            <div class="term-card">
+                                <div class="term-title">Hardware Installation</div>
+                                <div class="term-definition">SO-DIMM memory, 2.5" drives, keyboard replacement</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Display Technologies</div>
+                                <div class="term-definition">LCD vs OLED, IPS vs TN, touchscreen digitizers</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Connectivity</div>
+                                <div class="term-definition">USB-C capabilities, Bluetooth pairing, Wi-Fi standards</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">MDM Concepts</div>
+                                <div class="term-definition">Corporate vs BYOD, policy enforcement, app management</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Mobile Networking</div>
+                                <div class="term-definition">5G implementation, hotspot configuration, SIM management</div>
+                            </div>
+                            <div class="term-card">
+                                <div class="term-title">Synchronization</div>
+                                <div class="term-definition">Calendar/contacts sync, data caps, cloud storage</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="study-tip">
+                        <span class="tip-icon">💡</span>
+                        <strong>Exam Strategy:</strong> Focus on scenario-based questions where you need to choose the BEST solution. Practice identifying when to use specific hardware components, display types, and connectivity options based on user requirements.
+                    </div>
+
+                    <div class="lab-activity">
+                        <h3><span class="section-icon">📝</span> Final Assessment</h3>
+                        <p>Test your knowledge across all Domain 1 objectives:</p>
+                        <div style="text-align: center; margin: 20px 0;">
+                            <button class="btn-primary" onclick="startFinalQuiz()">Start 20-Question Practice Test</button>
+                            <button class="btn-primary" onclick="showStudyPlan()">Create Study Plan</button>
+                            <button class="btn-primary" onclick="showResources()">Additional Resources</button>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <span class="section-icon">⭐</span>
+                            Next Steps
+                        </h3>
+                        <div style="text-align: center;">
+                            <p style="margin-bottom: 20px;">Ready to continue your CompTIA A+ journey?</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                                <div style="background: #e8f5e8; padding: 20px; border-radius: 10px;">
+                                    <h4>Domain 2</h4>
+                                    <p>Networking (23%)</p>
+                                    <button class="btn-primary">Continue →</button>
+                                </div>
+                                <div style="background: #fff3e0; padding: 20px; border-radius: 10px;">
+                                    <h4>Practice Tests</h4>
+                                    <p>Domain-specific quizzes</p>
+                                    <button class="btn-primary">Practice →</button>
+                                </div>
+                                <div style="background: #f3e5f5; padding: 20px; border-radius: 10px;">
+                                    <h4>Lab Exercises</h4>
+                                    <p>Hands-on activities</p>
+                                    <button class="btn-primary">Lab →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function showObjective(objectiveId) {
+            // Hide all content sections
+            const contents = document.querySelectorAll('.objective-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show selected content and activate button
+            document.getElementById(objectiveId).classList.add('active');
+            event.target.classList.add('active');
+
+            // Add animation
+            const activeContent = document.getElementById(objectiveId);
+            activeContent.style.animation = 'none';
+            setTimeout(() => {
+                activeContent.style.animation = 'fadeInUp 0.5s ease-out';
+            }, 10);
+        }
+
+        // Component information display
+        function showComponentInfo(component) {
+            const infoDiv = document.getElementById('component-info');
+            const componentData = {
+                'screen': {
+                    title: 'Screen/Display',
+                    info: 'Modern laptops use LCD or OLED panels. Key considerations: resolution (1080p, 1440p, 4K), refresh rate (60Hz, 120Hz, 144Hz), and panel type (IPS for color accuracy, TN for speed). Replace if cracked, dead pixels, or backlight failure.'
+                },
+                'keyboard': {
+                    title: 'Keyboard',
+                    info: 'Membrane keyboards are common in laptops for thin profile. Mechanical keyboards offer better tactile feedback. Key features: backlight (single or RGB), function keys (Fn combinations), and spill resistance. Replace individual keys or entire assembly.'
+                },
+                'trackpad': {
+                    title: 'Trackpad',
+                    info: 'Capacitive touch surface with gesture support. Modern trackpads support multi-touch, palm rejection, and pressure sensitivity. Configuration includes sensitivity, scroll direction, and gesture customization. Can be disabled when external mouse is connected.'
+                },
+                'battery': {
+                    title: 'Battery',
+                    info: 'Lithium-ion batteries with limited charge cycles (300-500). Health degrades over time. Key specs: voltage (11.1V typical), capacity (mAh), and watt-hours (Wh). Replacement requires proper disposal and calibration of new battery.'
+                },
+                'ram': {
+                    title: 'RAM Memory',
+                    info: 'SO-DIMM form factor for laptops. DDR4 (common) or DDR5 (newer). Speeds: DDR4-2400, DDR4-3200. Installation: power off, remove battery, access slots (often under keyboard or bottom panel). Match voltage and speed specifications.'
+                },
+                'storage': {
+                    title: 'Storage Drive',
+                    info: '2.5" SATA SSDs or M.2 NVMe drives. NVMe offers faster speeds (3000+ MB/s vs 500 MB/s SATA). Consider capacity needs, performance requirements, and power consumption. Clone existing drive before replacement for seamless transition.'
+                }
+            };
+
+            const data = componentData[component];
+            if (data) {
+                infoDiv.innerHTML = `<h4>${data.title}</h4><p>${data.info}</p>`;
+                infoDiv.style.display = 'block';
+            }
+        }
+
+        // Quiz functionality
+        function checkAnswer(element, isCorrect) {
+            // Remove previous answer styling
+            const options = element.parentNode.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'none';
+            });
+
+            // Style the selected answer
+            if (isCorrect) {
+                element.classList.add('correct');
+                setTimeout(() => {
+                    alert('Correct! 🎉\n\nSO-DIMM (Small Outline Dual In-Line Memory Module) is the standard memory type used in laptops due to its compact size compared to desktop DIMM modules.');
+                }, 300);
+            } else {
+                element.classList.add('incorrect');
+                // Find and highlight the correct answer
+                options.forEach(option => {
+                    if (option.textContent.includes('SO-DIMM') || option.textContent.includes('OLED') || option.textContent.includes('Reversible connection')) {
+                        option.classList.add('correct');
+                    }
+                });
+                setTimeout(() => {
+                    alert('Incorrect. The correct answer is highlighted in green. Review the study material and try again!');
+                }, 300);
+            }
+
+            // Re-enable clicking after 3 seconds
+            setTimeout(() => {
+                options.forEach(option => {
+                    option.style.pointerEvents = 'auto';
+                    option.classList.remove('correct', 'incorrect');
+                });
+            }, 3000);
+        }
+
+        // Toggle details functionality
+        function toggleDetails(elementId) {
+            const element = document.getElementById(elementId);
+            if (element.style.display === 'none' || !element.style.display) {
+                element.style.display = 'block';
+                element.style.animation = 'fadeInUp 0.3s ease-out';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+
+        // Mock functions for buttons
+        function startFinalQuiz() {
+            alert('🎯 Final Assessment\n\nThis would launch a comprehensive 20-question practice test covering all Domain 1 objectives. Questions would include:\n\n• Hardware installation scenarios\n• Display technology comparisons\n• Accessory configuration\n• Network connectivity troubleshooting\n• MDM policy implementation\n\nRecommended: Review weak areas before attempting.');
+        }
+
+        function showStudyPlan() {
+            alert('📚 Personalized Study Plan\n\nBased on your progress:\n\n Week 1: Hardware & Components\n• Laptop disassembly/assembly practice\n• Memory and storage installation\n• Component identification drills\n\nWeek 2: Display Technologies\n• Display type comparisons\n• Touchscreen troubleshooting\n• Color calibration basics\n\nWeek 3: Connectivity & MDM\n• Bluetooth pairing scenarios\n• MDM configuration labs\n• Network troubleshooting\n\nDaily: 30 minutes of practice questions');
+        }
+
+        function showResources() {
+            alert('📖 Additional Study Resources\n\n🎥 Video Training:\n• Professor Messer A+ 220-1201 series\n• CompTIA Official Training\n• ITProTV Mobile Devices course\n\n📚 Reading Materials:\n• CompTIA A+ Study Guide (Sybex)\n• Mike Meyers A+ Certification\n• Exam Cram Series\n\n🛠️ Hands-On Practice:\n• Old laptops for disassembly\n• VirtualBox for OS configuration\n• Mobile device simulators\n\n✅ Practice Tests:\n• ExamCompass free quizzes\n• MeasureUp official practice\n• Transcender test engine');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to topic items
+            const topicItems = document.querySelectorAll('.topic-item');
+            topicItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(10px) scale(1.02)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+
+            // Add click effects to cards
+            const cards = document.querySelectorAll('.section-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('quiz-option') && !e.target.classList.contains('btn-primary')) {
+                        this.style.transform = 'scale(1.02)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                });
+            });
+
+            // Animate progress bar
+            setTimeout(() => {
+                const progressBar = document.querySelector('.progress-fill');
+                if (progressBar) {
+                    progressBar.style.width = '13%';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
