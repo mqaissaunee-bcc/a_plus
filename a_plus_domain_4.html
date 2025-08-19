@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 1 Domain 4: Virtualization & Cloud Computing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .exam-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 120px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 150px;
+            margin: 5px;
+        }
+
+        .nav-tab:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+
+        .subsection h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .cloud-models {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .cloud-model {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #3498db;
+        }
+
+        .cloud-model:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .cloud-model h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .characteristic {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .characteristic:hover {
+            transform: scale(1.05);
+        }
+
+        .vm-purposes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vm-purpose {
+            background: linear-gradient(45deg, #55a3ff, #003d82);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .vm-purpose:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .interactive-demo {
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .demo-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .demo-button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .quiz-container {
+            background: linear-gradient(145deg, #a8edea, #fed6e3);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .quiz-option {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .quiz-option.correct {
+            background: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .quiz-option.incorrect {
+            background: #ffcdd2;
+            border-color: #f44336;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .key-takeaways {
+            background: linear-gradient(145deg, #ffecd2, #fcb69f);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .key-takeaways h3 {
+            color: #d63031;
+            margin-bottom: 15px;
+        }
+
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #e17055;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .exam-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cloud-models {
+                grid-template-columns: 1fr;
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-tracker {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-tracker">
+        <div style="font-weight: 600; margin-bottom: 5px;">Study Progress</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div id="progressText">0% Complete</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>CompTIA A+ Core 1 Domain 4</h1>
+            <p>Virtualization and Cloud Computing</p>
+            <div class="exam-stats">
+                <div class="stat-item">
+                    <div style="font-size: 1.5em; font-weight: bold;">11%</div>
+                    <div>of Exam</div>
+                </div>
+                <div class="stat-item">
+                    <div style="font-size: 1.5em; font-weight: bold;">2</div>
+                    <div>Objectives</div>
+                </div>
+                <div class="stat-item">
+                    <div style="font-size: 1.5em; font-weight: bold;">220-1201</div>
+                    <div>Exam Code</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('overview')">Overview</button>
+            <button class="nav-tab" onclick="showSection('cloud-concepts')">4.1 Cloud Concepts</button>
+            <button class="nav-tab" onclick="showSection('virtualization')">4.2 Virtualization</button>
+            <button class="nav-tab" onclick="showSection('interactive')">Interactive Demo</button>
+            <button class="nav-tab" onclick="showSection('quiz')">Practice Quiz</button>
+        </nav>
+
+        <section id="overview" class="content-section active">
+            <h2 class="section-title">Domain 4 Overview</h2>
+            
+            <div class="subsection">
+                <h3>What You'll Learn</h3>
+                <p>Domain 4 covers the essential concepts of virtualization and cloud computing that every IT professional needs to understand. This domain accounts for 11% of the Core 1 exam and focuses on practical knowledge you'll use in real-world IT environments.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Exam Objectives Breakdown</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Objective</th>
+                        <th>Topic</th>
+                        <th>Key Focus Areas</th>
+                    </tr>
+                    <tr>
+                        <td>4.1</td>
+                        <td>Summarize cloud-computing concepts</td>
+                        <td>Cloud models, characteristics, desktop virtualization</td>
+                    </tr>
+                    <tr>
+                        <td>4.2</td>
+                        <td>Summarize aspects of client-side virtualization</td>
+                        <td>VM purposes, resource requirements, security</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="key-takeaways">
+                <h3>Key Takeaways for Success</h3>
+                <ul class="key-points">
+                    <li><strong>Understand the differences</strong> between public, private, hybrid, and community clouds</li>
+                    <li><strong>Know service models:</strong> IaaS, PaaS, and SaaS - what each provides</li>
+                    <li><strong>Grasp cloud characteristics:</strong> elasticity, metered utilization, high availability</li>
+                    <li><strong>Understand VM purposes:</strong> sandboxing, testing, legacy app support</li>
+                    <li><strong>Know resource requirements</strong> for running virtual machines effectively</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="cloud-concepts" class="content-section">
+            <h2 class="section-title">4.1 Cloud Computing Concepts</h2>
+            
+            <div class="subsection">
+                <h3>Common Cloud Models</h3>
+                <div class="cloud-models">
+                    <div class="cloud-model">
+                        <h4>🔒 Private Cloud</h4>
+                        <p>Dedicated cloud infrastructure for a single organization. Offers maximum control and security but requires significant investment.</p>
+                        <strong>Use Case:</strong> Large enterprises with strict security requirements
+                    </div>
+                    <div class="cloud-model">
+                        <h4>🌐 Public Cloud</h4>
+                        <p>Cloud services offered over the public internet by providers like AWS, Azure, or Google Cloud. Cost-effective and scalable.</p>
+                        <strong>Use Case:</strong> Startups, small businesses, development environments
+                    </div>
+                    <div class="cloud-model">
+                        <h4>🔀 Hybrid Cloud</h4>
+                        <p>Combination of private and public clouds, allowing data and applications to move between them for flexibility.</p>
+                        <strong>Use Case:</strong> Organizations needing both security and scalability
+                    </div>
+                    <div class="cloud-model">
+                        <h4>👥 Community Cloud</h4>
+                        <p>Shared cloud infrastructure for organizations with common requirements (e.g., compliance, security).</p>
+                        <strong>Use Case:</strong> Healthcare networks, government agencies
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Service Models (XaaS)</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Service Model</th>
+                        <th>What's Provided</th>
+                        <th>Customer Manages</th>
+                        <th>Examples</th>
+                    </tr>
+                    <tr>
+                        <td>IaaS<br><small>(Infrastructure as a Service)</small></td>
+                        <td>Virtual machines, storage, networks</td>
+                        <td>OS, applications, data</td>
+                        <td>AWS EC2, Azure VMs</td>
+                    </tr>
+                    <tr>
+                        <td>PaaS<br><small>(Platform as a Service)</small></td>
+                        <td>Runtime environment, development tools</td>
+                        <td>Applications, data</td>
+                        <td>Heroku, Google App Engine</td>
+                    </tr>
+                    <tr>
+                        <td>SaaS<br><small>(Software as a Service)</small></td>
+                        <td>Complete applications</td>
+                        <td>User data, configuration</td>
+                        <td>Office 365, Salesforce</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>Cloud Characteristics</h3>
+                <div class="characteristics-grid">
+                    <div class="characteristic">
+                        <h4>📊 Shared Resources</h4>
+                        <p>Multiple users share the same physical infrastructure through virtualization</p>
+                    </div>
+                    <div class="characteristic">
+                        <h4>📈 Metered Utilization</h4>
+                        <p>Pay-per-use billing model based on actual resource consumption</p>
+                    </div>
+                    <div class="characteristic">
+                        <h4>⚡ Rapid Elasticity</h4>
+                        <p>Ability to quickly scale resources up or down based on demand</p>
+                    </div>
+                    <div class="characteristic">
+                        <h4>🔄 High Availability</h4>
+                        <p>Services remain accessible with minimal downtime through redundancy</p>
+                    </div>
+                    <div class="characteristic">
+                        <h4>☁️ File Synchronization</h4>
+                        <p>Automatic syncing of files across multiple devices and locations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Desktop Virtualization</h3>
+                <div class="cloud-models">
+                    <div class="cloud-model">
+                        <h4>🏢 VDI On-Premises</h4>
+                        <p>Virtual desktops hosted on local servers within the organization's data center. Provides control but requires infrastructure investment.</p>
+                    </div>
+                    <div class="cloud-model">
+                        <h4>☁️ VDI in the Cloud</h4>
+                        <p>Virtual desktops hosted by cloud providers. Reduces infrastructure costs and provides scalability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="virtualization" class="content-section">
+            <h2 class="section-title">4.2 Client-Side Virtualization</h2>
+            
+            <div class="subsection">
+                <h3>Purpose of Virtual Machines</h3>
+                <div class="vm-purposes">
+                    <div class="vm-purpose" onclick="showVMDetails('sandbox')">🔒 Sandbox</div>
+                    <div class="vm-purpose" onclick="showVMDetails('testing')">🧪 Test Development</div>
+                    <div class="vm-purpose" onclick="showVMDetails('legacy')">📼 Legacy Software/OS</div>
+                    <div class="vm-purpose" onclick="showVMDetails('cross-platform')">🔄 Cross-Platform</div>
+                    <div class="vm-purpose" onclick="showVMDetails('app-virt')">📱 Application Virtualization</div>
+                </div>
+                
+                <div id="vm-details" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none;">
+                    <div id="vm-content"></div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Resource Requirements</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Resource</th>
+                        <th>Minimum</th>
+                        <th>Recommended</th>
+                        <th>Enterprise</th>
+                    </tr>
+                    <tr>
+                        <td>RAM</td>
+                        <td>4GB host + 2GB per VM</td>
+                        <td>8GB host + 4GB per VM</td>
+                        <td>16GB+ host + 8GB per VM</td>
+                    </tr>
+                    <tr>
+                        <td>Storage</td>
+                        <td>20GB per VM</td>
+                        <td>40GB per VM</td>
+                        <td>100GB+ per VM</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Dual-core with VT support</td>
+                        <td>Quad-core with VT-x/AMD-V</td>
+                        <td>Multi-core with advanced features</td>
+                    </tr>
+                    <tr>
+                        <td>Network</td>
+                        <td>Single NIC</td>
+                        <td>Multiple NICs or VLANs</td>
+                        <td>Dedicated network infrastructure</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>Security Requirements</h3>
+                <div class="cloud-models">
+                    <div class="cloud-model">
+                        <h4>🛡️ Isolation</h4>
+                        <p>VMs must be properly isolated from the host system and other VMs to prevent security breaches.</p>
+                    </div>
+                    <div class="cloud-model">
+                        <h4>🔐 Access Control</h4>
+                        <p>Implement strong authentication and authorization for VM access and management.</p>
+                    </div>
+                    <div class="cloud-model">
+                        <h4>📊 Monitoring</h4>
+                        <p>Continuous monitoring of VM activities and resource usage for security and performance.</p>
+                    </div>
+                    <div class="cloud-model">
+                        <h4>💾 Backup & Recovery</h4>
+                        <p>Regular snapshots and backups to ensure data protection and quick recovery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="interactive" class="content-section">
+            <h2 class="section-title">Interactive Demonstrations</h2>
+            
+            <div class="interactive-demo">
+                <h3>🎯 Cloud Service Model Selector</h3>
+                <p>Click on a scenario to see which cloud service model fits best:</p>
+                <div style="margin: 20px 0;">
+                    <button class="demo-button" onclick="showScenario('startup')">Startup Company</button>
+                    <button class="demo-button" onclick="showScenario('enterprise')">Large Enterprise</button>
+                    <button class="demo-button" onclick="showScenario('developer')">Software Developer</button>
+                    <button class="demo-button" onclick="showScenario('smb')">Small Business</button>
+                </div>
+                <div id="scenario-result" style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 10px; display: none;"></div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>💻 Virtual Machine Resource Calculator</h3>
+                <p>Calculate the resources needed for your virtualization setup:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div>
+                        <label>Number of VMs:</label>
+                        <input type="number" id="vmCount" value="2" min="1" max="10" style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 5px;">
+                    </div>
+                    <div>
+                        <label>VM Purpose:</label>
+                        <select id="vmPurpose" style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 5px;">
+                            <option value="basic">Basic Testing</option>
+                            <option value="development">Development</option>
+                            <option value="production">Production</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="demo-button" onclick="calculateResources()">Calculate Resources</button>
+                <div id="resource-result" style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 10px; display: none;"></div>
+            </div>
+        </section>
+
+        <section id="quiz" class="content-section">
+            <h2 class="section-title">Practice Quiz</h2>
+            
+            <div class="quiz-container">
+                <div id="quiz-progress">
+                    <h3>Question <span id="current-question">1</span> of <span id="total-questions">5</span></h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="quiz-progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="quiz-question">
+                    <h4>Which cloud deployment model provides dedicated infrastructure for a single organization?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(this, false)">Public Cloud</div>
+                        <div class="quiz-option" onclick="selectAnswer(this, true)">Private Cloud</div>
+                        <div class="quiz-option" onclick="selectAnswer(this, false)">Hybrid Cloud</div>
+                        <div class="quiz-option" onclick="selectAnswer(this, false)">Community Cloud</div>
+                    </div>
+                    <div id="answer-explanation" style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-radius: 8px; display: none;">
+                        <strong>Correct!</strong> Private cloud provides dedicated infrastructure for a single organization, offering maximum control and security.
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="demo-button" onclick="nextQuestion()" id="next-btn" style="display: none;">Next Question</button>
+                    <button class="demo-button" onclick="restartQuiz()" id="restart-btn" style="display: none;">Restart Quiz</button>
+                </div>
+
+                <div id="quiz-results" style="text-align: center; margin-top: 20px; display: none;">
+                    <h3>Quiz Complete!</h3>
+                    <div id="final-score" style="font-size: 2em; color: #2ecc71; font-weight: bold; margin: 15px 0;"></div>
+                    <div id="score-message"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let currentSection = 'overview';
+        let quizData = [
+            {
+                question: "Which cloud deployment model provides dedicated infrastructure for a single organization?",
+                options: ["Public Cloud", "Private Cloud", "Hybrid Cloud", "Community Cloud"],
+                correct: 1,
+                explanation: "Private cloud provides dedicated infrastructure for a single organization, offering maximum control and security."
+            },
+            {
+                question: "In which service model does the customer manage only applications and data?",
+                options: ["IaaS", "PaaS", "SaaS", "DaaS"],
+                correct: 1,
+                explanation: "In PaaS (Platform as a Service), the provider manages the infrastructure and platform, while customers manage only applications and data."
+            },
+            {
+                question: "What does 'rapid elasticity' mean in cloud computing?",
+                options: ["High availability", "Pay-per-use billing", "Quick scaling of resources", "Shared infrastructure"],
+                correct: 2,
+                explanation: "Rapid elasticity refers to the ability to quickly scale resources up or down based on demand."
+            },
+            {
+                question: "Which is NOT a primary purpose of virtual machines?",
+                options: ["Sandboxing", "Testing environments", "Physical hardware replacement", "Legacy software support"],
+                correct: 2,
+                explanation: "VMs are software-based and don't replace physical hardware, but rather run on top of it."
+            },
+            {
+                question: "What CPU feature is essential for running virtual machines?",
+                options: ["Hyper-threading", "Virtualization support (VT-x/AMD-V)", "Multiple cores", "High clock speed"],
+                correct: 1,
+                explanation: "Virtualization support (VT-x for Intel, AMD-V for AMD) is essential for efficient virtual machine operation."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let sectionsVisited = new Set(['overview']);
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Track visited sections
+            sectionsVisited.add(sectionId);
+            updateProgress();
+            
+            currentSection = sectionId;
+        }
+
+        function updateProgress() {
+            const totalSections = 5;
+            const progress = (sectionsVisited.size / totalSections) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = Math.round(progress) + '% Complete';
+        }
+
+        function showVMDetails(type) {
+            const details = {
+                sandbox: {
+                    title: "Sandbox Environment",
+                    content: "A secure, isolated environment for testing potentially dangerous software or exploring unknown applications without risking the host system. Perfect for malware analysis or testing suspicious downloads."
+                },
+                testing: {
+                    title: "Test Development",
+                    content: "VMs provide clean, reproducible environments for software testing. Developers can create consistent test environments, test across multiple OS versions, and quickly reset to clean states."
+                },
+                legacy: {
+                    title: "Legacy Software/OS Support",
+                    content: "Run older applications that aren't compatible with modern operating systems. This allows organizations to maintain critical legacy systems while transitioning to newer platforms."
+                },
+                'cross-platform': {
+                    title: "Cross-Platform Virtualization",
+                    content: "Run different operating systems on the same hardware. For example, running Windows VMs on a Linux host or macOS on Windows hardware (where licensing permits)."
+                },
+                'app-virt': {
+                    title: "Application Virtualization",
+                    content: "Isolate applications from the underlying OS, allowing multiple versions of the same application to run simultaneously without conflicts. Streamlines deployment and management."
+                }
+            };
+
+            const detail = details[type];
+            document.getElementById('vm-content').innerHTML = `
+                <h4>${detail.title}</h4>
+                <p>${detail.content}</p>
+            `;
+            document.getElementById('vm-details').style.display = 'block';
+        }
+
+        function showScenario(type) {
+            const scenarios = {
+                startup: {
+                    title: "Startup Company Recommendation",
+                    content: "🚀 <strong>Recommended: Public Cloud + SaaS</strong><br><br>Startups benefit from low upfront costs, rapid deployment, and pay-as-you-grow models. Use services like AWS, Google Cloud, or Azure for infrastructure, and SaaS solutions like Office 365 for productivity."
+                },
+                enterprise: {
+                    title: "Large Enterprise Recommendation", 
+                    content: "🏢 <strong>Recommended: Hybrid Cloud + Private Cloud</strong><br><br>Enterprises need security, compliance, and control. Hybrid approach allows sensitive data in private cloud while leveraging public cloud for scalability and cost optimization."
+                },
+                developer: {
+                    title: "Software Developer Recommendation",
+                    content: "👨‍💻 <strong>Recommended: PaaS + IaaS</strong><br><br>Developers benefit from PaaS for rapid application deployment (Heroku, Google App Engine) and IaaS for custom development environments and testing infrastructure."
+                },
+                smb: {
+                    title: "Small Business Recommendation",
+                    content: "🏪 <strong>Recommended: Public Cloud + SaaS</strong><br><br>Small businesses should focus on core operations. Use SaaS for email, CRM, and productivity tools, with public cloud for any custom applications or data storage needs."
+                }
+            };
+
+            const scenario = scenarios[type];
+            document.getElementById('scenario-result').innerHTML = `
+                <h4>${scenario.title}</h4>
+                <p>${scenario.content}</p>
+            `;
+            document.getElementById('scenario-result').style.display = 'block';
+        }
+
+        function calculateResources() {
+            const vmCount = parseInt(document.getElementById('vmCount').value);
+            const purpose = document.getElementById('vmPurpose').value;
+            
+            const requirements = {
+                basic: { ram: 2, storage: 20, cpu: 1 },
+                development: { ram: 4, storage: 40, cpu: 2 },
+                production: { ram: 8, storage: 100, cpu: 4 }
+            };
+            
+            const req = requirements[purpose];
+            const totalRAM = 8 + (vmCount * req.ram); // 8GB for host
+            const totalStorage = vmCount * req.storage;
+            const totalCPUCores = Math.max(4, vmCount * req.cpu);
+            
+            document.getElementById('resource-result').innerHTML = `
+                <h4>💻 Recommended System Specifications</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2em;">💾</div>
+                        <div><strong>${totalRAM}GB RAM</strong></div>
+                        <div style="font-size: 0.9em;">Host + VMs</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2em;">💿</div>
+                        <div><strong>${totalStorage}GB Storage</strong></div>
+                        <div style="font-size: 0.9em;">SSD Recommended</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2em;">⚡</div>
+                        <div><strong>${totalCPUCores} CPU Cores</strong></div>
+                        <div style="font-size: 0.9em;">With VT Support</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('resource-result').style.display = 'block';
+        }
+
+        function selectAnswer(element, isCorrect) {
+            // Disable all options
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Show correct/incorrect styling
+            if (isCorrect) {
+                element.classList.add('correct');
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                // Highlight the correct answer
+                const correctIndex = quizData[currentQuestion].correct;
+                document.querySelectorAll('.quiz-option')[correctIndex].classList.add('correct');
+            }
+            
+            // Show explanation
+            const explanation = document.getElementById('answer-explanation');
+            explanation.innerHTML = `<strong>${isCorrect ? 'Correct!' : 'Incorrect.'}</strong> ${quizData[currentQuestion].explanation}`;
+            explanation.style.display = 'block';
+            explanation.style.background = isCorrect ? '#e8f5e8' : '#ffe8e8';
+            
+            // Show next button
+            document.getElementById('next-btn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function loadQuestion() {
+            const question = quizData[currentQuestion];
+            
+            document.getElementById('current-question').textContent = currentQuestion + 1;
+            document.getElementById('quiz-progress-fill').style.width = ((currentQuestion + 1) / quizData.length) * 100 + '%';
+            
+            document.getElementById('quiz-question').innerHTML = `
+                <h4>${question.question}</h4>
+                <div class="quiz-options">
+                    ${question.options.map((option, index) => 
+                        `<div class="quiz-option" onclick="selectAnswer(this, ${index === question.correct})">${option}</div>`
+                    ).join('')}
+                </div>
+                <div id="answer-explanation" style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-radius: 8px; display: none;"></div>
+            `;
+            
+            document.getElementById('next-btn').style.display = 'none';
+        }
+
+        function showResults() {
+            const percentage = Math.round((score / quizData.length) * 100);
+            let message = '';
+            
+            if (percentage >= 80) {
+                message = "🎉 Excellent! You're well prepared for this domain!";
+            } else if (percentage >= 60) {
+                message = "👍 Good job! Review the areas you missed and you'll be ready.";
+            } else {
+                message = "📚 Keep studying! Review the material and try again.";
+            }
+            
+            document.getElementById('final-score').textContent = `${score}/${quizData.length} (${percentage}%)`;
+            document.getElementById('score-message').textContent = message;
+            document.getElementById('quiz-results').style.display = 'block';
+            document.getElementById('quiz-question').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('restart-btn').style.display = 'inline-block';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-results').style.display = 'none';
+            document.getElementById('quiz-question').style.display = 'block';
+            document.getElementById('restart-btn').style.display = 'none';
+            loadQuestion();
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('total-questions').textContent = quizData.length;
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
