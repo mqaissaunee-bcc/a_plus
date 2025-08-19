@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 1 - Domain 2: Networking Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            background: #ecf0f1;
+            border-radius: 25px;
+            height: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 25px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .objective-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .objective-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .objective-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .objective-content {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .ports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .port-card {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .port-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        .port-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .port-protocol {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .interactive-diagram {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .network-device {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .network-device:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3);
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .question {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .answer-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .answer-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .answer-option.correct {
+            background: #27ae60;
+            border-color: #2ecc71;
+        }
+
+        .answer-option.incorrect {
+            background: #e74c3c;
+            border-color: #c0392b;
+        }
+
+        .frequency-visual {
+            display: flex;
+            justify-content: space-around;
+            align-items: end;
+            height: 200px;
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .frequency-bar {
+            background: linear-gradient(to top, #3498db, #2ecc71);
+            border-radius: 5px 5px 0 0;
+            color: white;
+            text-align: center;
+            padding: 10px 5px;
+            min-width: 80px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .frequency-bar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.5);
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .study-tip {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .study-tip::before {
+            content: "💡";
+            font-size: 2em;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        .flashcard {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .flashcard:hover {
+            transform: rotateY(5deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .flashcard.flipped {
+            background: linear-gradient(135deg, #16a085, #1abc9c);
+            color: white;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+            transition: background-color 0.3s ease;
+        }
+
+        .comparison-table tr:hover td {
+            background-color: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .ports-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .frequency-visual {
+                flex-direction: column;
+                height: auto;
+                gap: 10px;
+            }
+            
+            .frequency-bar {
+                min-width: 200px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌐 CompTIA A+ Core 1</h1>
+            <div class="subtitle">Domain 2: Networking (20% of exam)</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="progressText">Progress: 0% Complete</div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-button active" onclick="showSection('overview')">📋 Overview</button>
+            <button class="tab-button" onclick="showSection('ports')">🔌 Ports & Protocols</button>
+            <button class="tab-button" onclick="showSection('hardware')">🔧 Network Hardware</button>
+            <button class="tab-button" onclick="showSection('wireless')">📡 Wireless</button>
+            <button class="tab-button" onclick="showSection('services')">⚙️ Network Services</button>
+            <button class="tab-button" onclick="showSection('configuration')">🔧 Configuration</button>
+            <button class="tab-button" onclick="showSection('connections')">🌍 Internet Connections</button>
+            <button class="tab-button" onclick="showSection('tools')">🛠️ Network Tools</button>
+            <button class="tab-button" onclick="showSection('quiz')">🎯 Practice Quiz</button>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="content-section active">
+            <h2>Domain 2: Networking Overview</h2>
+            <p>This domain covers fundamental networking concepts essential for IT support professionals. It represents 20% of the CompTIA A+ Core 1 exam and includes 8 main objectives.</p>
+            
+            <div class="objective-card" onclick="toggleExpand(this)">
+                <div class="objective-title">
+                    <span>🎯</span> Learning Objectives
+                    <span style="margin-left: auto; font-size: 0.8em;">Click to expand</span>
+                </div>
+                <div class="objective-content" style="display: none;">
+                    <ul style="margin-left: 20px; line-height: 2;">
+                        <li><strong>2.1:</strong> Compare and contrast TCP and UDP ports, protocols, and their purposes</li>
+                        <li><strong>2.2:</strong> Compare and contrast common networking hardware</li>
+                        <li><strong>2.3:</strong> Given a scenario, install and configure basic wired/wireless SOHO networks</li>
+                        <li><strong>2.4:</strong> Compare and contrast protocols for wireless networking</li>
+                        <li><strong>2.5:</strong> Summarize services provided by networked hosts</li>
+                        <li><strong>2.6:</strong> Compare and contrast common network configuration concepts</li>
+                        <li><strong>2.7:</strong> Compare and contrast Internet connection types, network types, and their features</li>
+                        <li><strong>2.8:</strong> Given a scenario, use networking tools</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="study-tip">
+                <h3>Study Strategy Tips</h3>
+                <p>Focus on understanding the practical applications of each protocol and device. The exam emphasizes scenario-based questions, so practice identifying which tool or protocol to use in specific situations.</p>
+            </div>
+        </div>
+
+        <!-- Ports & Protocols Section -->
+        <div id="ports" class="content-section">
+            <h2>🔌 TCP/UDP Ports & Protocols (Objective 2.1)</h2>
+            
+            <div class="study-tip">
+                <h3>Key Concept: TCP vs UDP</h3>
+                <p><strong>TCP (Transmission Control Protocol):</strong> Connection-oriented, reliable, slower<br>
+                <strong>UDP (User Datagram Protocol):</strong> Connectionless, faster, less reliable</p>
+            </div>
+
+            <div class="ports-grid" id="portsGrid">
+                <!-- Ports will be dynamically generated -->
+            </div>
+
+            <div class="interactive-diagram">
+                <h3>Protocol Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Protocol</th>
+                            <th>Type</th>
+                            <th>Purpose</th>
+                            <th>Example Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HTTPS</td>
+                            <td>TCP</td>
+                            <td>Secure web browsing</td>
+                            <td>Online banking</td>
+                        </tr>
+                        <tr>
+                            <td>DHCP</td>
+                            <td>UDP</td>
+                            <td>Automatic IP assignment</td>
+                            <td>Home router configuration</td>
+                        </tr>
+                        <tr>
+                            <td>SSH</td>
+                            <td>TCP</td>
+                            <td>Secure remote access</td>
+                            <td>Server administration</td>
+                        </tr>
+                        <tr>
+                            <td>DNS</td>
+                            <td>UDP</td>
+                            <td>Domain name resolution</td>
+                            <td>Website access</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Network Hardware Section -->
+        <div id="hardware" class="content-section">
+            <h2>🔧 Network Hardware (Objective 2.2)</h2>
+            
+            <div class="interactive-diagram">
+                <h3>Click on each device to learn more:</h3>
+                <div class="network-device" onclick="showDeviceInfo('router')">Router</div>
+                <div class="network-device" onclick="showDeviceInfo('switch')">Switch</div>
+                <div class="network-device" onclick="showDeviceInfo('ap')">Access Point</div>
+                <div class="network-device" onclick="showDeviceInfo('firewall')">Firewall</div>
+                <div class="network-device" onclick="showDeviceInfo('nic')">NIC</div>
+                <div class="network-device" onclick="showDeviceInfo('modem')">Cable Modem</div>
+                
+                <div id="deviceInfo" style="margin-top: 30px; padding: 20px; background: white; border-radius: 10px; display: none;">
+                    <h4 id="deviceTitle"></h4>
+                    <p id="deviceDescription"></p>
+                </div>
+            </div>
+
+            <div class="objective-card">
+                <div class="objective-title">
+                    <span>⚡</span> Power over Ethernet (PoE)
+                </div>
+                <div class="objective-content">
+                    <p><strong>PoE Standards:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>802.3af (PoE):</strong> 15.4W - Basic devices like IP phones</li>
+                        <li><strong>802.3at (PoE+):</strong> 25.5W - Wireless access points</li>
+                        <li><strong>802.3bt (PoE++):</strong> 60-100W - High-power devices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wireless Section -->
+        <div id="wireless" class="content-section">
+            <h2>📡 Wireless Networking (Objective 2.4)</h2>
+            
+            <div class="frequency-visual">
+                <div class="frequency-bar" style="height: 60%;" onmouseover="showTooltip(event, '2.4GHz: Longer range, slower speeds, more interference')" onmouseout="hideTooltip()">
+                    <div>2.4GHz</div>
+                    <div style="font-size: 0.8em;">11-14 channels</div>
+                </div>
+                <div class="frequency-bar" style="height: 80%;" onmouseover="showTooltip(event, '5GHz: Shorter range, faster speeds, less interference')" onmouseout="hideTooltip()">
+                    <div>5GHz</div>
+                    <div style="font-size: 0.8em;">23+ channels</div>
+                </div>
+                <div class="frequency-bar" style="height: 40%;" onmouseover="showTooltip(event, 'Bluetooth: Personal area network, low power')" onmouseout="hideTooltip()">
+                    <div>Bluetooth</div>
+                    <div style="font-size: 0.8em;">2.4GHz ISM</div>
+                </div>
+                <div class="frequency-bar" style="height: 30%;" onmouseover="showTooltip(event, 'NFC: Very short range, secure communications')" onmouseout="hideTooltip()">
+                    <div>NFC</div>
+                    <div style="font-size: 0.8em;">13.56MHz</div>
+                </div>
+            </div>
+
+            <div class="interactive-diagram">
+                <h3>802.11 Standards Evolution</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Standard</th>
+                            <th>Year</th>
+                            <th>Frequency</th>
+                            <th>Max Speed</th>
+                            <th>Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>802.11a</td>
+                            <td>1999</td>
+                            <td>5GHz</td>
+                            <td>54 Mbps</td>
+                            <td>Short</td>
+                        </tr>
+                        <tr>
+                            <td>802.11b</td>
+                            <td>1999</td>
+                            <td>2.4GHz</td>
+                            <td>11 Mbps</td>
+                            <td>Long</td>
+                        </tr>
+                        <tr>
+                            <td>802.11g</td>
+                            <td>2003</td>
+                            <td>2.4GHz</td>
+                            <td>54 Mbps</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>802.11n</td>
+                            <td>2009</td>
+                            <td>2.4/5GHz</td>
+                            <td>600 Mbps</td>
+                            <td>Extended</td>
+                        </tr>
+                        <tr>
+                            <td>802.11ac (WiFi 5)</td>
+                            <td>2013</td>
+                            <td>5GHz</td>
+                            <td>3.5 Gbps</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>802.11ax (WiFi 6)</td>
+                            <td>2019</td>
+                            <td>2.4/5GHz</td>
+                            <td>9.6 Gbps</td>
+                            <td>Extended</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Network Services Section -->
+        <div id="services" class="content-section">
+            <h2>⚙️ Network Services (Objective 2.5)</h2>
+            
+            <div class="objective-card">
+                <div class="objective-title">
+                    <span>🖥️</span> Server Roles
+                </div>
+                <div class="objective-content">
+                    <div class="ports-grid">
+                        <div style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 20px; border-radius: 15px;">
+                            <h4>DNS Server</h4>
+                            <p>Translates domain names to IP addresses</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 20px; border-radius: 15px;">
+                            <h4>DHCP Server</h4>
+                            <p>Automatically assigns IP addresses</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 20px; border-radius: 15px;">
+                            <h4>File Server</h4>
+                            <p>Provides centralized file storage and sharing</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 20px; border-radius: 15px;">
+                            <h4>Print Server</h4>
+                            <p>Manages network printing resources</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 20px; border-radius: 15px;">
+                            <h4>Mail Server</h4>
+                            <p>Handles email sending and receiving</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #1abc9c, #16a085); color: white; padding: 20px; border-radius: 15px;">
+                            <h4>Web Server</h4>
+                            <p>Serves web pages to clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="study-tip">
+                <h3>Security Appliances</h3>
+                <p><strong>UTM (Unified Threat Management):</strong> All-in-one security solution<br>
+                <strong>Proxy Server:</strong> Acts as intermediary, can filter content<br>
+                <strong>Load Balancer:</strong> Distributes traffic across multiple servers</p>
+            </div>
+        </div>
+
+        <!-- Configuration Section -->
+        <div id="configuration" class="content-section">
+            <h2>🔧 Network Configuration (Objective 2.6)</h2>
+            
+            <div class="interactive-diagram">
+                <h3>IP Addressing Concepts</h3>
+                <div class="objective-card">
+                    <div class="objective-title">IPv4 vs IPv6</div>
+                    <div class="objective-content">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Aspect</th>
+                                    <th>IPv4</th>
+                                    <th>IPv6</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Address Length</td>
+                                    <td>32 bits</td>
+                                    <td>128 bits</td>
+                                </tr>
+                                <tr>
+                                    <td>Format</td>
+                                    <td>192.168.1.1</td>
+                                    <td>2001:db8::1</td>
+                                </tr>
+                                <tr>
+                                    <td>Address Space</td>
+                                    <td>~4.3 billion</td>
+                                    <td>340 undecillion</td>
+                                </tr>
+                                <tr>
+                                    <td>Private Ranges</td>
+                                    <td>10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</td>
+                                    <td>fc00::/7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objective-card">
+                <div class="objective-title">
+                    <span>🏷️</span> DNS Record Types
+                </div>
+                <div class="objective-content">
+                    <ul style="margin-left: 20px; line-height: 2;">
+                        <li><strong>A Record:</strong> Maps domain to IPv4 address</li>
+                        <li><strong>AAAA Record:</strong> Maps domain to IPv6 address</li>
+                        <li><strong>MX Record:</strong> Mail exchange server</li>
+                        <li><strong>TXT Record:</strong> Text information (SPF, DKIM, DMARC)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internet Connections Section -->
+        <div id="connections" class="content-section">
+            <h2>🌍 Internet Connections & Network Types (Objective 2.7)</h2>
+            
+            <div class="ports-grid">
+                <div class="port-card" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                    <div class="port-number">Fiber</div>
+                    <div class="port-protocol">Fastest</div>
+                    <p>Up to 1000+ Mbps, symmetric speeds</p>
+                </div>
+                <div class="port-card" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                    <div class="port-number">Cable</div>
+                    <div class="port-protocol">High Speed</div>
+                    <p>Up to 1000 Mbps down, shared bandwidth</p>
+                </div>
+                <div class="port-card" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                    <div class="port-number">DSL</div>
+                    <div class="port-protocol">Moderate</div>
+                    <p>Up to 100 Mbps, distance dependent</p>
+                </div>
+                <div class="port-card" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                    <div class="port-number">Satellite</div>
+                    <div class="port-protocol">Rural</div>
+                    <p>25-100 Mbps, high latency</p>
+                </div>
+            </div>
+
+            <div class="objective-card">
+                <div class="objective-title">
+                    <span>🌐</span> Network Types
+                </div>
+                <div class="objective-content">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Coverage</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PAN</td>
+                                <td>Personal Area</td>
+                                <td>Bluetooth devices</td>
+                            </tr>
+                            <tr>
+                                <td>LAN</td>
+                                <td>Local Area</td>
+                                <td>Office network</td>
+                            </tr>
+                            <tr>
+                                <td>MAN</td>
+                                <td>Metropolitan Area</td>
+                                <td>City-wide network</td>
+                            </tr>
+                            <tr>
+                                <td>WAN</td>
+                                <td>Wide Area</td>
+                                <td>Internet</td>
+                            </tr>
+                            <tr>
+                                <td>SAN</td>
+                                <td>Storage Area</td>
+                                <td>Data center storage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network Tools Section -->
+        <div id="tools" class="content-section">
+            <h2>🛠️ Network Tools (Objective 2.8)</h2>
+            
+            <div class="ports-grid">
+                <div class="network-device" onclick="showToolInfo('crimper')">Crimper</div>
+                <div class="network-device" onclick="showToolInfo('stripper')">Cable Stripper</div>
+                <div class="network-device" onclick="showToolInfo('toner')">Toner Probe</div>
+                <div class="network-device" onclick="showToolInfo('punchdown')">Punchdown Tool</div>
+                <div class="network-device" onclick="showToolInfo('tester')">Cable Tester</div>
+                <div class="network-device" onclick="showToolInfo('wifi')">WiFi Analyzer</div>
+                <div class="network-device" onclick="showToolInfo('loopback')">Loopback Plug</div>
+                <div class="network-device" onclick="showToolInfo('tap')">Network Tap</div>
+            </div>
+
+            <div id="toolInfo" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none;">
+                <h4 id="toolTitle"></h4>
+                <p id="toolDescription"></p>
+            </div>
+
+            <div class="study-tip">
+                <h3>Tool Selection Tips</h3>
+                <p>Remember: Use the right tool for the job. Cable testers verify connectivity, toner probes trace cables, and WiFi analyzers check wireless signal strength and interference.</p>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="content-section">
+            <h2>🎯 Practice Quiz</h2>
+            <div class="quiz-container">
+                <div id="quizQuestion" class="question"></div>
+                <div id="quizOptions"></div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="nextQuestion()">Next Question</button>
+                    <button class="btn" onclick="resetQuiz()">Reset Quiz</button>
+                </div>
+                <div id="quizScore" style="margin-top: 20px; font-size: 1.2em; font-weight: bold;"></div>
+            </div>
+
+            <div class="study-tip">
+                <h3>Exam Tips</h3>
+                <p>Focus on port numbers, understand the difference between TCP and UDP, know when to use each networking tool, and understand wireless standards and frequencies.</p>
+            </div>
+        </div>
+
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = new Set();
+        let currentQuestionIndex = 0;
+        let quizScore = 0;
+        let quizAnswered = 0;
+
+        // Port and protocol data
+        const portsData = [
+            { port: "20/21", protocol: "FTP", purpose: "File Transfer Protocol", type: "TCP" },
+            { port: "22", protocol: "SSH", purpose: "Secure Shell", type: "TCP" },
+            { port: "23", protocol: "Telnet", purpose: "Unencrypted remote access", type: "TCP" },
+            { port: "25", protocol: "SMTP", purpose: "Simple Mail Transfer Protocol", type: "TCP" },
+            { port: "53", protocol: "DNS", purpose: "Domain Name System", type: "UDP" },
+            { port: "67/68", protocol: "DHCP", purpose: "Dynamic Host Configuration", type: "UDP" },
+            { port: "80", protocol: "HTTP", purpose: "Hypertext Transfer Protocol", type: "TCP" },
+            { port: "110", protocol: "POP3", purpose: "Post Office Protocol v3", type: "TCP" },
+            { port: "143", protocol: "IMAP", purpose: "Internet Mail Access Protocol", type: "TCP" },
+            { port: "161/162", protocol: "SNMP", purpose: "Simple Network Management", type: "UDP" },
+            { port: "389", protocol: "LDAP", purpose: "Lightweight Directory Access", type: "TCP" },
+            { port: "443", protocol: "HTTPS", purpose: "Secure HTTP", type: "TCP" },
+            { port: "445", protocol: "SMB", purpose: "Server Message Block", type: "TCP" },
+            { port: "3389", protocol: "RDP", purpose: "Remote Desktop Protocol", type: "TCP" }
+        ];
+
+        // Quiz questions
+        const quizQuestions = [
+            {
+                question: "Which port is used by HTTPS?",
+                options: ["80", "443", "22", "21"],
+                correct: 1,
+                explanation: "HTTPS uses port 443 for secure web traffic."
+            },
+            {
+                question: "What type of cable would you use for a 1000BaseT network?",
+                options: ["Cat 5", "Cat 5e", "Cat 6", "Cat 6a"],
+                correct: 2,
+                explanation: "Cat 6 cable supports 1000BaseT (Gigabit Ethernet) reliably."
+            },
+            {
+                question: "Which wireless standard is also known as WiFi 6?",
+                options: ["802.11n", "802.11ac", "802.11ax", "802.11g"],
+                correct: 2,
+                explanation: "802.11ax is the WiFi 6 standard, offering speeds up to 9.6 Gbps."
+            },
+            {
+                question: "What tool would you use to attach RJ45 connectors to UTP cable?",
+                options: ["Punchdown tool", "Cable stripper", "Crimper", "Toner probe"],
+                correct: 2,
+                explanation: "A crimper is used to attach RJ45 connectors to network cables."
+            },
+            {
+                question: "Which protocol is connectionless?",
+                options: ["TCP", "UDP", "HTTP", "SSH"],
+                correct: 1,
+                explanation: "UDP is connectionless, meaning it doesn't establish a connection before sending data."
+            }
+        ];
+
+        // Device information
+        const deviceInfo = {
+            router: {
+                title: "Router",
+                description: "Routes traffic between different networks. Operates at Layer 3 (Network layer). Connects LANs to WANs and provides NAT functionality."
+            },
+            switch: {
+                title: "Switch",
+                description: "Connects devices within a LAN. Operates at Layer 2 (Data Link layer). Can be managed (configurable) or unmanaged (plug-and-play)."
+            },
+            ap: {
+                title: "Access Point",
+                description: "Provides wireless connectivity to a wired network. Creates a wireless LAN (WLAN) for mobile devices to connect."
+            },
+            firewall: {
+                title: "Firewall",
+                description: "Filters network traffic based on security rules. Can be hardware-based or software-based. Protects networks from unauthorized access."
+            },
+            nic: {
+                title: "Network Interface Card",
+                description: "Connects a device to a network. Can be wired (Ethernet) or wireless (WiFi). Every network device needs a NIC."
+            },
+            modem: {
+                title: "Cable Modem",
+                description: "Converts digital signals to analog for transmission over cable lines. Connects your network to your Internet Service Provider (ISP)."
+            }
+        };
+
+        // Tool information
+        const toolInfo = {
+            crimper: {
+                title: "Crimper",
+                description: "Used to attach connectors (like RJ45) to network cables. Essential for creating custom-length Ethernet cables."
+            },
+            stripper: {
+                title: "Cable Stripper",
+                description: "Removes the outer jacket from network cables to expose the internal wires for connector attachment."
+            },
+            toner: {
+                title: "Toner Probe",
+                description: "Used to trace cables through walls or cable runs. The toner generates a signal, and the probe detects it."
+            },
+            punchdown: {
+                title: "Punchdown Tool",
+                description: "Used to connect wires to punch-down blocks, patch panels, and keystone jacks in structured cabling."
+            },
+            tester: {
+                title: "Cable Tester",
+                description: "Verifies cable continuity and proper wiring. Can detect opens, shorts, and miswired cables."
+            },
+            wifi: {
+                title: "WiFi Analyzer",
+                description: "Analyzes wireless networks, showing signal strength, channel usage, and interference sources."
+            },
+            loopback: {
+                title: "Loopback Plug",
+                description: "Used to test network interfaces by sending signals back to the same port for connectivity verification."
+            },
+            tap: {
+                title: "Network Tap",
+                description: "Allows monitoring of network traffic for troubleshooting and security analysis without disrupting network flow."
+            }
+        };
+
+        // Initialize the application
+        function init() {
+            generatePortsGrid();
+            loadQuizQuestion();
+            updateProgress();
+        }
+
+        // Generate ports grid
+        function generatePortsGrid() {
+            const grid = document.getElementById('portsGrid');
+            grid.innerHTML = '';
+            
+            portsData.forEach(port => {
+                const card = document.createElement('div');
+                card.className = 'port-card';
+                card.style.background = port.type === 'TCP' ? 
+                    'linear-gradient(135deg, #3498db, #2980b9)' : 
+                    'linear-gradient(135deg, #e74c3c, #c0392b)';
+                
+                card.innerHTML = `
+                    <div class="port-number">${port.port}</div>
+                    <div class="port-protocol">${port.protocol}</div>
+                    <p>${port.purpose}</p>
+                    <small>${port.type}</small>
+                `;
+                
+                card.addEventListener('click', () => {
+                    card.style.transform = 'scale(1.1) rotate(5deg)';
+                    setTimeout(() => {
+                        card.style.transform = 'scale(1.05)';
+                    }, 200);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Show section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section and activate tab
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Mark section as completed
+            completedSections.add(sectionId);
+            updateProgress();
+        }
+
+        // Update progress
+        function updateProgress() {
+            const totalSections = 9; // Total number of sections
+            const progressPercentage = (completedSections.size / totalSections) * 100;
+            
+            document.getElementById('progressBar').style.width = progressPercentage + '%';
+            document.getElementById('progressText').textContent = 
+                `Progress: ${Math.round(progressPercentage)}% Complete (${completedSections.size}/${totalSections} sections)`;
+        }
+
+        // Toggle expand for cards
+        function toggleExpand(card) {
+            const content = card.querySelector('.objective-content');
+            const isHidden = content.style.display === 'none';
+            content.style.display = isHidden ? 'block' : 'none';
+        }
+
+        // Show device info
+        function showDeviceInfo(deviceType) {
+            const infoDiv = document.getElementById('deviceInfo');
+            const titleDiv = document.getElementById('deviceTitle');
+            const descDiv = document.getElementById('deviceDescription');
+            
+            titleDiv.textContent = deviceInfo[deviceType].title;
+            descDiv.textContent = deviceInfo[deviceType].description;
+            infoDiv.style.display = 'block';
+            
+            // Add animation
+            infoDiv.style.animation = 'fadeIn 0.5s ease-in';
+        }
+
+        // Show tool info
+        function showToolInfo(toolType) {
+            const infoDiv = document.getElementById('toolInfo');
+            const titleDiv = document.getElementById('toolTitle');
+            const descDiv = document.getElementById('toolDescription');
+            
+            titleDiv.textContent = toolInfo[toolType].title;
+            descDiv.textContent = toolInfo[toolType].description;
+            infoDiv.style.display = 'block';
+            
+            // Add animation
+            infoDiv.style.animation = 'fadeIn 0.5s ease-in';
+        }
+
+        // Tooltip functions
+        function showTooltip(event, text) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.textContent = text;
+            tooltip.style.left = event.pageX + 10 + 'px';
+            tooltip.style.top = event.pageY - 30 + 'px';
+            tooltip.style.opacity = '1';
+        }
+
+        function hideTooltip() {
+            document.getElementById('tooltip').style.opacity = '0';
+        }
+
+        // Quiz functions
+        function loadQuizQuestion() {
+            if (currentQuestionIndex >= quizQuestions.length) {
+                currentQuestionIndex = 0;
+            }
+            
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('quizQuestion').textContent = question.question;
+            
+            const optionsDiv = document.getElementById('quizOptions');
+            optionsDiv.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'answer-option';
+                optionDiv.textContent = option;
+                optionDiv.addEventListener('click', () => checkAnswer(index, optionDiv));
+                optionsDiv.appendChild(optionDiv);
+            });
+            
+            updateQuizScore();
+        }
+
+        function checkAnswer(selectedIndex, optionDiv) {
+            const question = quizQuestions[currentQuestionIndex];
+            const isCorrect = selectedIndex === question.correct;
+            
+            // Disable all options
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Show correct answer
+            document.querySelectorAll('.answer-option')[question.correct].classList.add('correct');
+            
+            if (!isCorrect) {
+                optionDiv.classList.add('incorrect');
+            } else {
+                quizScore++;
+            }
+            
+            quizAnswered++;
+            
+            // Show explanation
+            setTimeout(() => {
+                alert(question.explanation);
+            }, 500);
+            
+            updateQuizScore();
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex >= quizQuestions.length) {
+                alert(`Quiz completed! Your score: ${quizScore}/${quizAnswered}`);
+                currentQuestionIndex = 0;
+            }
+            loadQuizQuestion();
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            quizScore = 0;
+            quizAnswered = 0;
+            loadQuizQuestion();
+        }
+
+        function updateQuizScore() {
+            document.getElementById('quizScore').textContent = 
+                `Score: ${quizScore}/${quizAnswered} (${Math.round((quizScore/Math.max(quizAnswered,1))*100)}%)`;
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
