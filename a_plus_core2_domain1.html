@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 2 Domain 1: Operating Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 4px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #00ff87, #60efff);
+            height: 20px;
+            border-radius: 16px;
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: #333;
+            font-weight: bold;
+        }
+
+        .content-area {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .topic-section {
+            display: none;
+        }
+
+        .topic-section.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .topic-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .topic-title {
+            font-size: 1.8rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .subtopic {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .subtopic:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .subtopic h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.2);
+        }
+
+        .info-card h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            color: white;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid transparent;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .quiz-option:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .quiz-option.selected {
+            border-color: #ffd93d;
+            background: rgba(255,217,61,0.2);
+        }
+
+        .quiz-option.correct {
+            border-color: #00ff87;
+            background: rgba(0,255,135,0.2);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ff6b6b;
+            background: rgba(255,107,107,0.2);
+        }
+
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .command-demo {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .command-line {
+            margin: 5px 0;
+        }
+
+        .prompt {
+            color: #ffff00;
+        }
+
+        .interactive-element {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .collapsible {
+            background: #f1f3f4;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .collapsible:hover {
+            background: #e8eaed;
+        }
+
+        .collapsible.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .collapsible-content {
+            padding: 0 15px;
+            display: none;
+            overflow: hidden;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 10px;
+        }
+
+        .score-display {
+            background: linear-gradient(45deg, #00ff87, #60efff);
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 20px 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .tip {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                gap: 5px;
+            }
+            
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .content-area {
+                padding: 20px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖥️ CompTIA A+ Core 2 Domain 1</h1>
+            <p>Operating Systems (28% of exam)</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTopic('overview')">Overview</button>
+            <button class="nav-tab" onclick="showTopic('os-types')">OS Types</button>
+            <button class="nav-tab" onclick="showTopic('installations')">Installations</button>
+            <button class="nav-tab" onclick="showTopic('windows')">Windows</button>
+            <button class="nav-tab" onclick="showTopic('command-line')">Command Line</button>
+            <button class="nav-tab" onclick="showTopic('macos')">macOS</button>
+            <button class="nav-tab" onclick="showTopic('linux')">Linux</button>
+            <button class="nav-tab" onclick="showTopic('applications')">Applications</button>
+            <button class="nav-tab" onclick="showTopic('cloud')">Cloud Tools</button>
+            <button class="nav-tab" onclick="showTopic('quiz')">Practice Quiz</button>
+        </div>
+
+        <div class="content-area">
+            <!-- Overview Section -->
+            <div id="overview" class="topic-section active">
+                <div class="topic-header">
+                    <div class="topic-icon">📖</div>
+                    <div class="topic-title">Domain 1 Overview</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🎯 What You'll Learn</h3>
+                    <p>Domain 1 covers operating systems fundamentals and comprises <span class="highlight">28% of the Core 2 exam</span>. You'll master:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Different operating system types and purposes</li>
+                        <li>OS installation and upgrade procedures</li>
+                        <li>Windows features, tools, and configurations</li>
+                        <li>Command-line operations across platforms</li>
+                        <li>macOS and Linux fundamentals</li>
+                        <li>Application installation and cloud productivity tools</li>
+                    </ul>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>📊 Exam Weight</h4>
+                        <p>28% of total exam</p>
+                        <p>~25 questions</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>⏱️ Study Time</h4>
+                        <p>3-4 weeks recommended</p>
+                        <p>Focus on hands-on practice</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>🔧 Key Skills</h4>
+                        <p>OS management</p>
+                        <p>Troubleshooting</p>
+                        <p>Configuration</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>💼 Real-world Use</h4>
+                        <p>Daily IT support tasks</p>
+                        <p>System administration</p>
+                    </div>
+                </div>
+
+                <div class="interactive-element" onclick="startLearningPath()">
+                    <h3>🚀 Start Your Learning Journey</h3>
+                    <p>Click here to begin with OS Types and work through each topic systematically!</p>
+                </div>
+            </div>
+
+            <!-- OS Types Section -->
+            <div id="os-types" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">💻</div>
+                    <div class="topic-title">1.1 Operating System Types & Purposes</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🖥️ Workstation Operating Systems</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Windows</h4>
+                            <p>Most common business OS</p>
+                            <p>• GUI-based interface</p>
+                            <p>• Enterprise integration</p>
+                            <p>• Extensive software support</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>macOS</h4>
+                            <p>Apple's desktop OS</p>
+                            <p>• Unix-based foundation</p>
+                            <p>• Creative industry standard</p>
+                            <p>• Seamless Apple ecosystem</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Linux</h4>
+                            <p>Open-source OS family</p>
+                            <p>• Multiple distributions</p>
+                            <p>• Server and desktop use</p>
+                            <p>• High customization</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Chrome OS</h4>
+                            <p>Google's cloud-focused OS</p>
+                            <p>• Web-based applications</p>
+                            <p>• Education market focus</p>
+                            <p>• Fast boot times</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📱 Mobile Operating Systems</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>iOS</h4>
+                            <p>Apple's phone OS</p>
+                            <p>• Closed ecosystem</p>
+                            <p>• App Store only</p>
+                            <p>• High security</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>iPadOS</h4>
+                            <p>Apple's tablet OS</p>
+                            <p>• iOS derivative</p>
+                            <p>• Enhanced multitasking</p>
+                            <p>• Desktop-class features</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Android</h4>
+                            <p>Google's mobile OS</p>
+                            <p>• Open source</p>
+                            <p>• Multiple vendors</p>
+                            <p>• Customizable interface</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="collapsible">File Systems Deep Dive</button>
+                <div class="collapsible-content">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>NTFS</h4>
+                            <p>Windows standard filesystem</p>
+                            <p>• Large file support (16TB)</p>
+                            <p>• File permissions</p>
+                            <p>• Journaling capability</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>APFS</h4>
+                            <p>Apple File System</p>
+                            <p>• Optimized for SSD</p>
+                            <p>• Snapshot support</p>
+                            <p>• Strong encryption</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>ext4</h4>
+                            <p>Linux standard filesystem</p>
+                            <p>• Up to 1EB volumes</p>
+                            <p>• Backward compatible</p>
+                            <p>• Journal checksums</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>FAT32</h4>
+                            <p>Legacy compatibility</p>
+                            <p>• 4GB file limit</p>
+                            <p>• Universal support</p>
+                            <p>• Simple structure</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Exam Tip:</strong> Remember the file size limitations! FAT32 has a 4GB file limit, while NTFS supports files up to 16TB.
+                </div>
+            </div>
+
+            <!-- Installations Section -->
+            <div id="installations" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">⚙️</div>
+                    <div class="topic-title">1.2 OS Installations & Upgrades</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🚀 Boot Methods</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>USB Boot</h4>
+                            <p>Most common method</p>
+                            <p>• Fast installation</p>
+                            <p>• Portable media</p>
+                            <p>• UEFI support</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Network Boot</h4>
+                            <p>PXE (Preboot Execution)</p>
+                            <p>• Central deployment</p>
+                            <p>• No physical media</p>
+                            <p>• Automated process</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Internal HDD</h4>
+                            <p>Partition-based boot</p>
+                            <p>• Multiboot scenarios</p>
+                            <p>• Recovery partitions</p>
+                            <p>• Dual-boot setups</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📦 Installation Types</h3>
+                    
+                    <button class="collapsible">Clean Install</button>
+                    <div class="collapsible-content">
+                        <p><strong>Definition:</strong> Complete OS installation on a formatted drive</p>
+                        <p><strong>Pros:</strong> Fresh start, optimal performance, no legacy issues</p>
+                        <p><strong>Cons:</strong> Data loss, need to reinstall applications</p>
+                        <p><strong>When to use:</strong> Corrupted systems, major upgrades, new computers</p>
+                    </div>
+
+                    <button class="collapsible">Upgrade Install</button>
+                    <div class="collapsible-content">
+                        <p><strong>Definition:</strong> Installing newer OS version over existing one</p>
+                        <p><strong>Pros:</strong> Preserves data and applications</p>
+                        <p><strong>Cons:</strong> Potential compatibility issues, slower performance</p>
+                        <p><strong>Requirements:</strong> Compatible hardware, supported upgrade path</p>
+                    </div>
+
+                    <button class="collapsible">Image Deployment</button>
+                    <div class="collapsible-content">
+                        <p><strong>Definition:</strong> Deploying pre-configured OS image</p>
+                        <p><strong>Tools:</strong> Windows Deployment Services (WDS), Ghost, Clonezilla</p>
+                        <p><strong>Benefits:</strong> Standardized configurations, rapid deployment</p>
+                        <p><strong>Use case:</strong> Corporate environments, multiple identical systems</p>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Important:</strong> Always backup critical data before any OS installation or upgrade process!
+                </div>
+
+                <div class="subtopic">
+                    <h3>💾 Partitioning</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>GPT (GUID Partition Table)</h4>
+                            <p>• Modern standard</p>
+                            <p>• UEFI requirement</p>
+                            <p>• 128 partitions max</p>
+                            <p>• >2TB drive support</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>MBR (Master Boot Record)</h4>
+                            <p>• Legacy standard</p>
+                            <p>• BIOS compatibility</p>
+                            <p>• 4 primary partitions</p>
+                            <p>• 2TB drive limit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Windows Section -->
+            <div id="windows" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">🪟</div>
+                    <div class="topic-title">1.3-1.7 Microsoft Windows</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🏷️ Windows Editions Comparison</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Windows 11 Home</h4>
+                            <p>• Consumer focused</p>
+                            <p>• No domain join</p>
+                            <p>• Basic security features</p>
+                            <p>• Limited remote access</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Windows 11 Pro</h4>
+                            <p>• Business features</p>
+                            <p>• Domain join capability</p>
+                            <p>• BitLocker encryption</p>
+                            <p>• Group Policy support</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Windows 11 Enterprise</h4>
+                            <p>• Advanced security</p>
+                            <p>• Volume licensing</p>
+                            <p>• Advanced management</p>
+                            <p>• Enhanced virtualization</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🛠️ Essential Windows Tools</h3>
+                    
+                    <button class="collapsible">Task Manager (Ctrl+Shift+Esc)</button>
+                    <div class="collapsible-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>Processes Tab</h4>
+                                <p>View running applications and background processes</p>
+                                <p>Monitor CPU, memory, disk usage</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Performance Tab</h4>
+                                <p>Real-time system performance graphs</p>
+                                <p>Resource utilization over time</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Startup Tab</h4>
+                                <p>Manage startup programs</p>
+                                <p>Measure startup impact</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Services Tab</h4>
+                                <p>View and manage system services</p>
+                                <p>Start/stop service operations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="collapsible">Microsoft Management Console (MMC) Snap-ins</button>
+                    <div class="collapsible-content">
+                        <p><strong>Key MMC Tools:</strong></p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li><strong>Event Viewer (eventvwr.msc):</strong> System logs and troubleshooting</li>
+                            <li><strong>Disk Management (diskmgmt.msc):</strong> Partition and volume management</li>
+                            <li><strong>Device Manager (devmgmt.msc):</strong> Hardware device management</li>
+                            <li><strong>Group Policy Editor (gpedit.msc):</strong> System policy configuration</li>
+                            <li><strong>Local Users and Groups (lusrmgr.msc):</strong> User account management</li>
+                        </ul>
+                    </div>
+
+                    <button class="collapsible">Windows Settings vs Control Panel</button>
+                    <div class="collapsible-content">
+                        <p><strong>Windows Settings (Modern Interface):</strong></p>
+                        <p>• Touch-friendly design • Cloud-integrated options • Simplified interface</p>
+                        <br>
+                        <p><strong>Control Panel (Legacy Interface):</strong></p>
+                        <p>• Advanced configuration options • Administrative tools • Professional settings</p>
+                        <br>
+                        <p><strong>Key Control Panel Items:</strong> Programs and Features, Device Manager, System, Network and Sharing Center</p>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Pro Tip:</strong> Learn the .msc commands! They're faster than navigating through menus and are frequently tested on the exam.
+                </div>
+
+                <div class="subtopic">
+                    <h3>🌐 Windows Networking</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Domain vs Workgroup</h4>
+                            <p><strong>Domain:</strong> Centralized management</p>
+                            <p><strong>Workgroup:</strong> Peer-to-peer networking</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Windows Firewall</h4>
+                            <p>Built-in network protection</p>
+                            <p>Application-based rules</p>
+                            <p>Inbound/outbound filtering</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Network Profiles</h4>
+                            <p><strong>Public:</strong> Restrictive security</p>
+                            <p><strong>Private:</strong> Home/office networks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Command Line Section -->
+            <div id="command-line" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">⌨️</div>
+                    <div class="topic-title">1.5 Command Line Tools</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📁 Navigation Commands</h3>
+                    <div class="command-demo">
+                        <div class="command-line"><span class="prompt">C:\></span> cd Documents</div>
+                        <div class="command-line"><span class="prompt">C:\Users\Username\Documents></span> dir</div>
+                        <div class="command-line">Volume in drive C has no label.</div>
+                        <div class="command-line">Directory of C:\Users\Username\Documents</div>
+                        <div class="command-line"><span class="prompt">C:\Users\Username\Documents></span> cd ..</div>
+                        <div class="command-line"><span class="prompt">C:\Users\Username></span></div>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>cd (Change Directory)</h4>
+                            <p>• cd.. (go up one level)</p>
+                            <p>• cd\ (go to root)</p>
+                            <p>• cd /d D: (change drive)</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>dir (Directory listing)</h4>
+                            <p>• dir /a (show hidden files)</p>
+                            <p>• dir /s (include subdirectories)</p>
+                            <p>• dir *.txt (filter by type)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🌐 Network Commands</h3>
+                    <div class="command-demo">
+                        <div class="command-line"><span class="prompt">C:\></span> ipconfig /all</div>
+                        <div class="command-line">Windows IP Configuration</div>
+                        <div class="command-line">   Host Name: COMPUTER-01</div>
+                        <div class="command-line">   IPv4 Address: 192.168.1.100</div>
+                        <div class="command-line"><span class="prompt">C:\></span> ping google.com</div>
+                        <div class="command-line">Pinging google.com [172.217.164.110] with 32 bytes:</div>
+                        <div class="command-line">Reply from 172.217.164.110: bytes=32 time=20ms TTL=116</div>
+                    </div>
+
+                    <button class="collapsible">Essential Network Commands</button>
+                    <div class="collapsible-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>ipconfig</h4>
+                                <p>• ipconfig /all (detailed info)</p>
+                                <p>• ipconfig /release (release IP)</p>
+                                <p>• ipconfig /renew (renew IP)</p>
+                                <p>• ipconfig /flushdns (clear DNS cache)</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>ping</h4>
+                                <p>Test network connectivity</p>
+                                <p>• ping -t (continuous ping)</p>
+                                <p>• ping -4 (force IPv4)</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>tracert</h4>
+                                <p>Trace route to destination</p>
+                                <p>Shows hop-by-hop path</p>
+                                <p>Identifies network bottlenecks</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>netstat</h4>
+                                <p>• netstat -a (all connections)</p>
+                                <p>• netstat -n (numerical addresses)</p>
+                                <p>• netstat -b (show programs)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💾 Disk Management Commands</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>chkdsk</h4>
+                            <p>Check disk for errors</p>
+                            <p>• chkdsk /f (fix errors)</p>
+                            <p>• chkdsk /r (locate bad sectors)</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>diskpart</h4>
+                            <p>Advanced disk partitioning</p>
+                            <p>• list disk, select disk</p>
+                            <p>• create partition primary</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>sfc (System File Checker)</h4>
+                            <p>• sfc /scannow (scan system files)</p>
+                            <p>• sfc /verifyonly (verify only)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Caution:</strong> Some commands like diskpart and format can cause data loss. Always double-check your commands!
+                </div>
+            </div>
+
+            <!-- macOS Section -->
+            <div id="macos" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">🍎</div>
+                    <div class="topic-title">1.8 macOS Features & Tools</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📁 System Folders</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>/Applications</h4>
+                            <p>Installed applications</p>
+                            <p>User-accessible programs</p>
+                            <p>App bundles (.app files)</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>/Users</h4>
+                            <p>User home directories</p>
+                            <p>Documents, Downloads, Desktop</p>
+                            <p>Personal settings and data</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>/System</h4>
+                            <p>Core system files</p>
+                            <p>Protected by SIP</p>
+                            <p>Critical OS components</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>/Library</h4>
+                            <p>System-wide resources</p>
+                            <p>Shared libraries and frameworks</p>
+                            <p>Application support files</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔧 Essential macOS Features</h3>
+                    
+                    <button class="collapsible">Finder & Navigation</button>
+                    <div class="collapsible-content">
+                        <p><strong>Finder:</strong> File manager and system browser</p>
+                        <p><strong>Key Features:</strong></p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>Sidebar for quick access to locations</li>
+                            <li>Quick Look (Space bar) for file preview</li>
+                            <li>Tags and smart folders for organization</li>
+                            <li>Column view for hierarchical browsing</li>
+                        </ul>
+                    </div>
+
+                    <button class="collapsible">Spotlight Search</button>
+                    <div class="collapsible-content">
+                        <p><strong>Access:</strong> Cmd+Space</p>
+                        <p><strong>Capabilities:</strong></p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>System-wide file and content search</li>
+                            <li>Application launching</li>
+                            <li>Calculator and conversions</li>
+                            <li>Web search integration</li>
+                        </ul>
+                    </div>
+
+                    <button class="collapsible">Mission Control & Spaces</button>
+                    <div class="collapsible-content">
+                        <p><strong>Mission Control:</strong> Overview of all open windows</p>
+                        <p><strong>Multiple Desktops:</strong> Virtual workspaces for organization</p>
+                        <p><strong>Hot Corners:</strong> Screen corner shortcuts for quick access</p>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔐 Security & Management</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>FileVault</h4>
+                            <p>Full disk encryption</p>
+                            <p>XTS-AES-128 encryption</p>
+                            <p>Recovery key backup</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Keychain</h4>
+                            <p>Password management</p>
+                            <p>Certificate storage</p>
+                            <p>Secure notes and keys</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Time Machine</h4>
+                            <p>Automated backup system</p>
+                            <p>Hourly snapshots</p>
+                            <p>Easy file recovery</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Terminal</h4>
+                            <p>Command-line interface</p>
+                            <p>Unix/bash commands</p>
+                            <p>System administration</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Mac Tip:</strong> Learn keyboard shortcuts! Cmd+Space (Spotlight), Cmd+Tab (App Switcher), and F3 (Mission Control) are essential for efficiency.
+                </div>
+
+                <div class="subtopic">
+                    <h3>📦 Application Management</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>.dmg Files</h4>
+                            <p>Disk image format</p>
+                            <p>Mount as virtual disk</p>
+                            <p>Drag to Applications</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>.pkg Files</h4>
+                            <p>Installer packages</p>
+                            <p>Guided installation</p>
+                            <p>System-level installs</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>App Store</h4>
+                            <p>Official app distribution</p>
+                            <p>Automatic updates</p>
+                            <p>Sandboxed applications</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linux Section -->
+            <div id="linux" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">🐧</div>
+                    <div class="topic-title">1.9 Linux Client/Desktop</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📁 File Management Commands</h3>
+                    <div class="command-demo">
+                        <div class="command-line"><span class="prompt">user@linux:~$</span> ls -la</div>
+                        <div class="command-line">total 24</div>
+                        <div class="command-line">drwxr-xr-x 3 user user 4096 Oct 15 14:30 .</div>
+                        <div class="command-line">drwxr-xr-x 3 root root 4096 Oct 15 14:25 ..</div>
+                        <div class="command-line">-rw-r--r-- 1 user user  220 Oct 15 14:25 .bash_logout</div>
+                        <div class="command-line"><span class="prompt">user@linux:~$</span> pwd</div>
+                        <div class="command-line">/home/user</div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>ls (list)</h4>
+                            <p>• ls -l (long format)</p>
+                            <p>• ls -a (show hidden)</p>
+                            <p>• ls -la (long + hidden)</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>pwd (print working directory)</h4>
+                            <p>Shows current location</p>
+                            <p>Full path display</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>mv (move/rename)</h4>
+                            <p>mv file1 file2 (rename)</p>
+                            <p>mv file /path/ (move)</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>cp (copy)</h4>
+                            <p>• cp file1 file2</p>
+                            <p>• cp -r dir1 dir2 (recursive)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>👤 Administrative Commands</h3>
+                    
+                    <button class="collapsible">User Management</button>
+                    <div class="collapsible-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>su (switch user)</h4>
+                                <p>• su - (login shell)</p>
+                                <p>• su username</p>
+                                <p>Requires target user password</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>sudo (super user do)</h4>
+                                <p>Execute commands as another user</p>
+                                <p>Uses current user password</p>
+                                <p>Configurable permissions</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="collapsible">File Permissions</button>
+                    <div class="collapsible-content">
+                        <div class="command-demo">
+                            <div class="command-line"><span class="prompt">user@linux:~$</span> chmod 755 script.sh</div>
+                            <div class="command-line"><span class="prompt">user@linux:~$</span> chown user:group file.txt</div>
+                        </div>
+                        <p><strong>Permission Numbers:</strong></p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li><strong>4:</strong> Read (r)</li>
+                            <li><strong>2:</strong> Write (w)</li>
+                            <li><strong>1:</strong> Execute (x)</li>
+                            <li><strong>755:</strong> rwxr-xr-x (owner: rwx, group: r-x, others: r-x)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔍 System Information</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>ps (processes)</h4>
+                            <p>• ps aux (all processes)</p>
+                            <p>• ps -ef (full format)</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>top</h4>
+                            <p>Real-time process monitor</p>
+                            <p>CPU and memory usage</p>
+                            <p>Interactive interface</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>df (disk free)</h4>
+                            <p>• df -h (human readable)</p>
+                            <p>Shows filesystem usage</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>du (disk usage)</h4>
+                            <p>• du -sh (summary)</p>
+                            <p>Directory size information</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📦 Package Management</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>apt (Debian/Ubuntu)</h4>
+                            <p>• apt update (refresh repos)</p>
+                            <p>• apt install package</p>
+                            <p>• apt remove package</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>dnf (Red Hat/Fedora)</h4>
+                            <p>• dnf install package</p>
+                            <p>• dnf update</p>
+                            <p>• dnf search keyword</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Root Access:</strong> Be extremely careful with sudo commands! They can modify system-critical files and settings.
+                </div>
+
+                <div class="subtopic">
+                    <h3>📝 Configuration Files</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>/etc/passwd</h4>
+                            <p>User account information</p>
+                            <p>Username, UID, shell</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>/etc/hosts</h4>
+                            <p>Local DNS resolution</p>
+                            <p>IP to hostname mapping</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>/etc/fstab</h4>
+                            <p>Filesystem mount table</p>
+                            <p>Boot-time mount points</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>/etc/resolv.conf</h4>
+                            <p>DNS server configuration</p>
+                            <p>Domain search settings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Section -->
+            <div id="applications" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">📱</div>
+                    <div class="topic-title">1.10 Application Installation</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔧 System Requirements</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Architecture</h4>
+                            <p><strong>32-bit vs 64-bit</strong></p>
+                            <p>• 32-bit: Limited to 4GB RAM</p>
+                            <p>• 64-bit: Much larger memory support</p>
+                            <p>• Backward compatibility considerations</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Graphics Requirements</h4>
+                            <p><strong>Integrated vs Dedicated</strong></p>
+                            <p>• VRAM requirements</p>
+                            <p>• DirectX/OpenGL support</p>
+                            <p>• Hardware acceleration needs</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Hardware Tokens</h4>
+                            <p>External security devices</p>
+                            <p>• USB dongles</p>
+                            <p>• Smart cards</p>
+                            <p>• Hardware security modules</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Storage Space</h4>
+                            <p>• Installation requirements</p>
+                            <p>• Additional data space</p>
+                            <p>• Temporary file space</p>
+                            <p>• Future update space</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📦 Distribution Methods</h3>
+                    
+                    <button class="collapsible">Physical Media vs Digital</button>
+                    <div class="collapsible-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>Physical Media</h4>
+                                <p>• DVD/CD installation</p>
+                                <p>• USB flash drives</p>
+                                <p>• No internet required</p>
+                                <p>• Slower than network install</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Mountable ISO</h4>
+                                <p>• Virtual optical drive</p>
+                                <p>• No physical media needed</p>
+                                <p>• Can be stored locally</p>
+                                <p>• Easy distribution</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Downloadable Package</h4>
+                                <p>• Direct from vendor</p>
+                                <p>• Always current version</p>
+                                <p>• Requires internet</p>
+                                <p>• Various formats (.msi, .exe, .dmg)</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Image Deployment</h4>
+                                <p>• Pre-configured installations</p>
+                                <p>• Corporate environments</p>
+                                <p>• Rapid deployment</p>
+                                <p>• Standardized configurations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>⚠️ Impact Considerations</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Device Impact</h4>
+                            <p>• Performance reduction</p>
+                            <p>• Storage consumption</p>
+                            <p>• Battery life (mobile)</p>
+                            <p>• Heat generation</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Network Impact</h4>
+                            <p>• Bandwidth usage</p>
+                            <p>• Background updates</p>
+                            <p>• Cloud synchronization</p>
+                            <p>• Remote access needs</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Operation Impact</h4>
+                            <p>• Workflow changes</p>
+                            <p>• Training requirements</p>
+                            <p>• Compatibility issues</p>
+                            <p>• Security implications</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Business Impact</h4>
+                            <p>• Licensing costs</p>
+                            <p>• Support requirements</p>
+                            <p>• Productivity changes</p>
+                            <p>• Compliance considerations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Best Practice:</strong> Always test application installations in a non-production environment first to assess impact and compatibility.
+                </div>
+            </div>
+
+            <!-- Cloud Tools Section -->
+            <div id="cloud" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">☁️</div>
+                    <div class="topic-title">1.11 Cloud-Based Productivity Tools</div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📧 Email Systems</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Microsoft 365</h4>
+                            <p>• Outlook web access</p>
+                            <p>• Exchange Online</p>
+                            <p>• Advanced security features</p>
+                            <p>• Enterprise integration</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Google Workspace</h4>
+                            <p>• Gmail for business</p>
+                            <p>• Real-time collaboration</p>
+                            <p>• Integrated productivity suite</p>
+                            <p>• Mobile-first design</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Configuration</h4>
+                            <p>• IMAP/POP3 settings</p>
+                            <p>• OAuth authentication</p>
+                            <p>• Mobile device setup</p>
+                            <p>• Offline synchronization</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>💾 Cloud Storage</h3>
+                    
+                    <button class="collapsible">Sync and Folder Settings</button>
+                    <div class="collapsible-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>OneDrive</h4>
+                                <p>• Files On-Demand</p>
+                                <p>• Selective sync folders</p>
+                                <p>• Version history</p>
+                                <p>• Office integration</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Google Drive</h4>
+                                <p>• Stream files (save local space)</p>
+                                <p>• Mirror files (local copy)</p>
+                                <p>• Shared drives for teams</p>
+                                <p>• Advanced sharing permissions</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Dropbox</h4>
+                                <p>• Smart Sync technology</p>
+                                <p>• Selective sync</p>
+                                <p>• LAN sync optimization</p>
+                                <p>• File recovery features</p>
+                            </div>
+                        </div>
+                        <div class="tip">
+                            <strong>💡 Storage Tip:</strong> Use selective sync to save local storage space while maintaining cloud access to all files.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🤝 Collaboration Tools</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Document Collaboration</h4>
+                            <p><strong>Real-time editing:</strong></p>
+                            <p>• Multiple users simultaneously</p>
+                            <p>• Comments and suggestions</p>
+                            <p>• Version control and history</p>
+                            <p>• Conflict resolution</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Video Conferencing</h4>
+                            <p><strong>Popular platforms:</strong></p>
+                            <p>• Microsoft Teams</p>
+                            <p>• Google Meet</p>
+                            <p>• Zoom</p>
+                            <p>• Slack huddles</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Instant Messaging</h4>
+                            <p><strong>Features:</strong></p>
+                            <p>• Channels and direct messages</p>
+                            <p>• File sharing integration</p>
+                            <p>• Bot and automation support</p>
+                            <p>• Mobile and desktop sync</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Presentation Tools</h4>
+                            <p><strong>Cloud-based presentations:</strong></p>
+                            <p>• PowerPoint Online</p>
+                            <p>• Google Slides</p>
+                            <p>• Real-time collaboration</p>
+                            <p>• Presenter mode and notes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>🔐 Identity & Licensing</h3>
+                    
+                    <button class="collapsible">Identity Synchronization</button>
+                    <div class="collapsible-content">
+                        <p><strong>Single Sign-On (SSO):</strong> Users authenticate once to access multiple cloud services</p>
+                        <p><strong>Directory Synchronization:</strong> On-premises Active Directory syncs with cloud identity providers</p>
+                        <p><strong>Multi-Factor Authentication:</strong> Additional security layers for cloud access</p>
+                        <p><strong>Federated Identity:</strong> Trust relationships between different identity systems</p>
+                    </div>
+
+                    <button class="collapsible">Licensing Models</button>
+                    <div class="collapsible-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>Per-User Licensing</h4>
+                                <p>• Most common model</p>
+                                <p>• Monthly/annual subscriptions</p>
+                                <p>• Different feature tiers</p>
+                                <p>• Easy to scale up/down</p>
+                            </div>
+                            <div class="info-card">
+                                <h4>Enterprise Agreements</h4>
+                                <p>• Volume discounts</p>
+                                <p>• Multi-year commitments</p>
+                                <p>• Additional support included</p>
+                                <p>• Compliance features</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Data Privacy:</strong> Understand data residency requirements and compliance regulations when configuring cloud productivity tools.
+                </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div id="quiz" class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">🎯</div>
+                    <div class="topic-title">Practice Quiz</div>
+                </div>
+
+                <div class="score-display" id="scoreDisplay">
+                    Score: 0/0 | Click "Start Quiz" to begin!
+                </div>
+
+                <div class="quiz-container" id="quizContainer">
+                    <div class="quiz-question" id="questionText">
+                        Ready to test your knowledge of Operating Systems? This quiz covers all major topics from Domain 1.
+                    </div>
+                    
+                    <button class="quiz-option" onclick="startQuiz()" style="background: rgba(255,255,255,0.2); border: 2px solid #ffd93d; font-weight: bold;">
+                        🚀 Start Practice Quiz
+                    </button>
+                    
+                    <div id="quizOptions" class="quiz-options" style="display: none;"></div>
+                    <div id="quizFeedback" class="quiz-feedback" style="display: none;"></div>
+                    
+                    <div style="margin-top: 20px; display: none;" id="quizControls">
+                        <button class="quiz-option" onclick="nextQuestion()" id="nextBtn" style="background: rgba(0,255,135,0.2); border: 2px solid #00ff87;">
+                            Next Question →
+                        </button>
+                        <button class="quiz-option" onclick="restartQuiz()" id="restartBtn" style="background: rgba(255,107,107,0.2); border: 2px solid #ff6b6b; display: none;">
+                            🔄 Restart Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtopic">
+                    <h3>📚 Study Tips for Success</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Hands-on Practice</h4>
+                            <p>• Set up virtual machines</p>
+                            <p>• Practice command-line tools</p>
+                            <p>• Explore different OS interfaces</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Memorization Aids</h4>
+                            <p>• Create flashcards for commands</p>
+                            <p>• Practice typing common commands</p>
+                            <p>• Use mnemonics for file systems</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Real-world Application</h4>
+                            <p>• Help friends/family with PC issues</p>
+                            <p>• Join online forums</p>
+                            <p>• Document your troubleshooting</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Exam Strategy</h4>
+                            <p>• Read questions carefully</p>
+                            <p>• Eliminate wrong answers</p>
+                            <p>• Flag uncertain questions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz functionality
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = null;
+        let quizStarted = false;
+
+        const questions = [
+            {
+                question: "Which file system is the default for Windows 10 and 11?",
+                options: ["FAT32", "NTFS", "exFAT", "ReFS"],
+                correct: 1,
+                explanation: "NTFS (New Technology File System) is the default file system for modern Windows versions, supporting large files, permissions, and journaling."
+            },
+            {
+                question: "What is the maximum file size limit for FAT32?",
+                options: ["2GB", "4GB", "8GB", "16GB"],
+                correct: 1,
+                explanation: "FAT32 has a 4GB maximum file size limit, which is why it's not suitable for modern large files like HD videos."
+            },
+            {
+                question: "Which command displays the current directory in Windows Command Prompt?",
+                options: ["dir", "cd", "pwd", "ls"],
+                correct: 0,
+                explanation: "The 'dir' command displays the contents of the current directory in Windows Command Prompt."
+            },
+            {
+                question: "What does the Linux command 'sudo' allow you to do?",
+                options: ["Switch users", "Execute commands as another user", "Display system information", "Search for files"],
+                correct: 1,
+                explanation: "'sudo' (super user do) allows you to execute commands with the privileges of another user, typically root."
+            },
+            {
+                question: "Which Windows edition supports joining a domain?",
+                options: ["Windows 11 Home", "Windows 11 Pro", "Both Home and Pro", "Neither edition"],
+                correct: 1,
+                explanation: "Only Windows 11 Pro (and Enterprise) editions support joining a domain. Home edition is limited to workgroup only."
+            },
+            {
+                question: "What is the macOS equivalent of Windows Explorer?",
+                options: ["Spotlight", "Finder", "Mission Control", "Dock"],
+                correct: 1,
+                explanation: "Finder is macOS's file manager and system browser, equivalent to Windows Explorer/File Explorer."
+            },
+            {
+                question: "Which Linux command is used to change file permissions?",
+                options: ["chown", "chmod", "ls", "cp"],
+                correct: 1,
+                explanation: "'chmod' (change mode) is used to change file permissions in Linux, while 'chown' changes ownership."
+            },
+            {
+                question: "What does 'ipconfig /flushdns' do in Windows?",
+                options: ["Releases IP address", "Renews IP address", "Clears DNS cache", "Shows IP configuration"],
+                correct: 2,
+                explanation: "'ipconfig /flushdns' clears the DNS resolver cache, which can help resolve DNS-related connectivity issues."
+            },
+            {
+                question: "Which macOS feature provides full disk encryption?",
+                options: ["Keychain", "FileVault", "Time Machine", "Spotlight"],
+                correct: 1,
+                explanation: "FileVault provides full disk encryption for macOS, protecting data if the device is lost or stolen."
+            },
+            {
+                question: "What is the difference between 32-bit and 64-bit applications?",
+                options: ["File size only", "Memory addressing capability", "Processing speed only", "No significant difference"],
+                correct: 1,
+                explanation: "The main difference is memory addressing capability - 32-bit apps are limited to ~4GB RAM, while 64-bit can address much more memory."
+            }
+        ];
+
+        function updateProgress() {
+            const progress = ((currentQuestion) / questions.length) * 100;
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = progress + '%';
+            progressFill.textContent = Math.round(progress) + '%';
+        }
+
+        function startQuiz() {
+            quizStarted = true;
+            currentQuestion = 0;
+            score = 0;
+            selectedAnswer = null;
+            document.getElementById('quizControls').style.display = 'block';
+            showQuestion();
+            updateProgress();
+        }
+
+        function showQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.style.display = 'block';
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('div');
+                button.className = 'quiz-option';
+                button.textContent = option;
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            selectedAnswer = null;
+            updateScore();
+        }
+
+        function selectAnswer(answerIndex) {
+            if (selectedAnswer !== null) return; // Prevent multiple selections
+
+            selectedAnswer = answerIndex;
+            const question = questions[currentQuestion];
+            const options = document.querySelectorAll('#quizOptions .quiz-option');
+            
+            options.forEach((option, index) => {
+                option.classList.remove('selected');
+                if (index === answerIndex) {
+                    option.classList.add('selected');
+                }
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === answerIndex && answerIndex !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (answerIndex === question.correct) {
+                score++;
+            }
+
+            // Show feedback
+            const feedback = document.getElementById('quizFeedback');
+            feedback.style.display = 'block';
+            feedback.innerHTML = `
+                <strong>${answerIndex === question.correct ? '✅ Correct!' : '❌ Incorrect'}</strong><br>
+                ${question.explanation}
+            `;
+
+            document.getElementById('nextBtn').style.display = 'block';
+            updateScore();
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            updateProgress();
+            showQuestion();
+        }
+
+        function showResults() {
+            const percentage = Math.round((score / questions.length) * 100);
+            let message, emoji;
+            
+            if (percentage >= 90) {
+                message = "Outstanding! You're ready for the exam!";
+                emoji = "🏆";
+            } else if (percentage >= 80) {
+                message = "Great job! Just a bit more study needed.";
+                emoji = "🎉";
+            } else if (percentage >= 70) {
+                message = "Good work! Review the topics you missed.";
+                emoji = "👍";
+            } else {
+                message = "Keep studying! You'll get there.";
+                emoji = "📚";
+            }
+
+            document.getElementById('questionText').innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">${emoji}</div>
+                    <h2>Quiz Complete!</h2>
+                    <p style="font-size: 1.5rem; margin: 20px 0;">Your Score: ${score}/${questions.length} (${percentage}%)</p>
+                    <p>${message}</p>
+                </div>
+            `;
+            
+            document.getElementById('quizOptions').style.display = 'none';
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('restartBtn').style.display = 'block';
+            
+            updateScore();
+        }
+
+        function restartQuiz() {
+            document.getElementById('restartBtn').style.display = 'none';
+            startQuiz();
+        }
+
+        function updateScore() {
+            document.getElementById('scoreDisplay').textContent = 
+                `Score: ${score}/${currentQuestion + (selectedAnswer !== null ? 1 : 0)} | Question ${currentQuestion + 1}/${questions.length}`;
+        }
+
+        // Navigation functionality
+        function showTopic(topicId) {
+            // Hide all topic sections
+            const sections = document.querySelectorAll('.topic-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected topic and activate tab
+            document.getElementById(topicId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Update progress based on topic viewed
+            updateLearningProgress();
+        }
+
+        function updateLearningProgress() {
+            const totalTopics = 9; // Number of learning topics (excluding quiz)
+            const activeTopics = document.querySelectorAll('.nav-tab.active').length;
+            const progress = Math.min((activeTopics / totalTopics) * 100, 100);
+            
+            const progressFill = document.getElementById('progressFill');
+            if (!quizStarted) {
+                progressFill.style.width = progress + '%';
+                progressFill.textContent = Math.round(progress) + '%';
+            }
+        }
+
+        function startLearningPath() {
+            showTopic('os-types');
+            // Highlight the OS Types tab
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-tab')[1].classList.add('active'); // OS Types is second tab
+        }
+
+        // Collapsible functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+            
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                    } else {
+                        content.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on hover
+            const cards = document.querySelectorAll('.info-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add typing effect to command demos
+            const commandDemos = document.querySelectorAll('.command-demo');
+            commandDemos.forEach(demo => {
+                demo.addEventListener('click', function() {
+                    this.style.backgroundColor = '#2a2a2a';
+                    setTimeout(() => {
+                        this.style.backgroundColor = '#1e1e1e';
+                    }, 200);
+                });
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter' && quizStarted && selectedAnswer !== null) {
+                nextQuestion();
+            }
+            
+            if (e.key >= '1' && e.key <= '4' && quizStarted && selectedAnswer === null) {
+                const index = parseInt(e.key) - 1;
+                const options = document.querySelectorAll('#quizOptions .quiz-option');
+                if (options[index]) {
+                    selectAnswer(index);
+                }
+            }
+        });
+
+        // Add visual feedback for interactions
+        function addRippleEffect(element, event) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255,255,255,0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            element.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add ripple effect CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+            
+            .quiz-option {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize progress
+        updateLearningProgress();
+    </script>
+</body>
+</html>
