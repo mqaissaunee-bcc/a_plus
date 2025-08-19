@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A+ Core 2 Domain 4: Operational Procedures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .exam-info {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .exam-info h2 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-item strong {
+            display: block;
+            color: #764ba2;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #764ba2;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            color: #667eea;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+
+        .topic-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-points ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjMzMzMgNEw2IDExLjMzMzNMMi42NjY2NyA4IiBzdHJva2U9IiM2NjdlZWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=') no-repeat left center;
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea10, #764ba210);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .quiz-question h4 {
+            color: #764ba2;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+
+        .quiz-option.selected {
+            background: #667eea;
+            color: white;
+        }
+
+        .quiz-option.correct {
+            background: #28a745;
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .flashcard {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .flashcard:hover {
+            transform: rotateY(5deg);
+        }
+
+        .flashcard-content {
+            transition: opacity 0.3s ease;
+        }
+
+        .flashcard.flipped .flashcard-front {
+            opacity: 0;
+        }
+
+        .flashcard.flipped .flashcard-back {
+            opacity: 1;
+        }
+
+        .flashcard-back {
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .score-display {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 90%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CompTIA A+ Core 2</h1>
+            <p>Domain 4: Operational Procedures (21% of exam)</p>
+        </div>
+
+        <div class="exam-info">
+            <h2>Domain Overview</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Exam Weight</strong>
+                    21% of Core 2 Exam
+                </div>
+                <div class="info-item">
+                    <strong>Focus Areas</strong>
+                    Documentation, Safety, Procedures
+                </div>
+                <div class="info-item">
+                    <strong>Key Skills</strong>
+                    Change Management, Disaster Recovery
+                </div>
+                <div class="info-item">
+                    <strong>Exam Code</strong>
+                    220-1202 (V15)
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showSection('overview')">Overview</button>
+            <button class="nav-btn" onclick="showSection('documentation')">Documentation</button>
+            <button class="nav-btn" onclick="showSection('safety')">Safety Procedures</button>
+            <button class="nav-btn" onclick="showSection('professionalism')">Professionalism</button>
+            <button class="nav-btn" onclick="showSection('scripting')">Scripting</button>
+            <button class="nav-btn" onclick="showSection('remote')">Remote Access</button>
+            <button class="nav-btn" onclick="showSection('quiz')">Practice Quiz</button>
+            <button class="nav-btn" onclick="showSection('flashcards')">Flashcards</button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="content-section active">
+            <h2>Domain 4: Operational Procedures Overview</h2>
+            
+            <div class="key-points">
+                <h3>Core Competencies</h3>
+                <ul>
+                    <li>Implement best practices for documentation and change management</li>
+                    <li>Follow safety procedures and environmental considerations</li>
+                    <li>Demonstrate professionalism and effective communication</li>
+                    <li>Understand prohibited content policies and privacy regulations</li>
+                    <li>Perform basic scripting tasks for automation</li>
+                    <li>Configure and use remote access technologies</li>
+                    <li>Implement incident response procedures</li>
+                    <li>Apply disaster prevention and recovery practices</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <h3>What You'll Learn</h3>
+                <p>This domain focuses on the operational aspects of IT support, covering everything from proper documentation practices to safety protocols. You'll learn how to maintain professional standards, implement change management procedures, and use various tools and technologies to support business operations effectively.</p>
+            </div>
+
+            <div class="topic-card">
+                <h3>Real-World Applications</h3>
+                <p>These skills are essential for any IT professional working in a business environment. You'll apply these concepts daily when documenting system changes, following safety protocols, communicating with users, and maintaining IT infrastructure according to industry best practices.</p>
+            </div>
+        </div>
+
+        <!-- Documentation Section -->
+        <div id="documentation" class="content-section">
+            <h2>Documentation and Change Management</h2>
+            
+            <div class="topic-card">
+                <h3>Documentation Best Practices</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Network topology diagrams and asset inventory</li>
+                        <li>Knowledge base and procedures documentation</li>
+                        <li>Ticketing systems and incident tracking</li>
+                        <li>Acceptable use policies (AUP)</li>
+                        <li>Password policies and network security documentation</li>
+                        <li>Inventory management and warranty tracking</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Change Management Process</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Document business processes and impact assessment</li>
+                        <li>Obtain proper approvals and authorization</li>
+                        <li>Create rollback plans and risk mitigation strategies</li>
+                        <li>Schedule maintenance windows and communicate changes</li>
+                        <li>Implement changes with proper testing procedures</li>
+                        <li>Document outcomes and lessons learned</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Disaster Prevention and Recovery</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Backup testing and verification procedures</li>
+                        <li>UPS (Uninterruptible Power Supply) implementation</li>
+                        <li>Surge protection and power management</li>
+                        <li>Cloud storage and off-site backup strategies</li>
+                        <li>Account recovery and data restoration procedures</li>
+                        <li>Business continuity planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Safety Procedures Section -->
+        <div id="safety" class="content-section">
+            <h2>Safety Procedures and Environmental Considerations</h2>
+            
+            <div class="topic-card">
+                <h3>Electrical Safety</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>ESD (Electrostatic Discharge) protection and grounding</li>
+                        <li>Power supply safety and electrical hazard awareness</li>
+                        <li>Proper use of anti-static equipment</li>
+                        <li>Disconnecting power before hardware work</li>
+                        <li>Personal protective equipment (PPE) usage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Environmental Factors</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Temperature and humidity control requirements</li>
+                        <li>Proper ventilation and air quality management</li>
+                        <li>Material Safety Data Sheet (MSDS) compliance</li>
+                        <li>Toxic waste disposal and environmental regulations</li>
+                        <li>Battery disposal and recycling procedures</li>
+                        <li>Equipment disposal and data destruction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Physical Safety</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Heavy equipment lifting and moving procedures</li>
+                        <li>Cable management and trip hazard prevention</li>
+                        <li>Fire safety and emergency evacuation procedures</li>
+                        <li>First aid procedures and emergency contacts</li>
+                        <li>Workplace ergonomics and injury prevention</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professionalism Section -->
+        <div id="professionalism" class="content-section">
+            <h2>Professionalism and Communication</h2>
+            
+            <div class="topic-card">
+                <h3>Professional Communication</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Active listening and empathy in customer interactions</li>
+                        <li>Professional language and appropriate tone</li>
+                        <li>Clear and concise technical explanations</li>
+                        <li>Proper email etiquette and documentation</li>
+                        <li>Meeting deadlines and managing expectations</li>
+                        <li>Follow-up procedures and customer satisfaction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Prohibited Content and Privacy</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Personal use restrictions and company policies</li>
+                        <li>Personally Identifiable Information (PII) protection</li>
+                        <li>Regulated data handling (HIPAA, PCI, etc.)</li>
+                        <li>Social media policies and guidelines</li>
+                        <li>Software piracy and copyright compliance</li>
+                        <li>Incident reporting and escalation procedures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Licensing and Legal Compliance</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Software licensing models (per-seat, site, enterprise)</li>
+                        <li>Open source vs. commercial software licensing</li>
+                        <li>Digital Rights Management (DRM) compliance</li>
+                        <li>End User License Agreements (EULA) understanding</li>
+                        <li>Compliance auditing and documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripting Section -->
+        <div id="scripting" class="content-section">
+            <h2>Basic Scripting and Automation</h2>
+            
+            <div class="topic-card">
+                <h3>Scripting Languages Overview</h3>
+                <div class="key-points">
+                    <ul>
+                        <li><strong>PowerShell (.ps1):</strong> Windows administration and automation</li>
+                        <li><strong>Bash (.sh):</strong> Linux/Unix shell scripting</li>
+                        <li><strong>Python (.py):</strong> Cross-platform automation and data processing</li>
+                        <li><strong>JavaScript (.js):</strong> Web-based automation and client-side scripting</li>
+                        <li><strong>Visual Basic Script (.vbs):</strong> Windows COM automation</li>
+                        <li><strong>Batch files (.bat/.cmd):</strong> Simple Windows command automation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Common Use Cases</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Automated backups and file management</li>
+                        <li>User account provisioning and management</li>
+                        <li>System monitoring and log analysis</li>
+                        <li>Software installation and updates</li>
+                        <li>Network configuration and troubleshooting</li>
+                        <li>Report generation and data extraction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Scripting Considerations</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Security implications and execution policies</li>
+                        <li>Error handling and logging procedures</li>
+                        <li>Testing in development environments</li>
+                        <li>Documentation and version control</li>
+                        <li>Performance impact and resource usage</li>
+                        <li>Maintenance and update procedures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remote Access Section -->
+        <div id="remote" class="content-section">
+            <h2>Remote Access Technologies</h2>
+            
+            <div class="topic-card">
+                <h3>Remote Desktop Solutions</h3>
+                <div class="key-points">
+                    <ul>
+                        <li><strong>Remote Desktop Protocol (RDP):</strong> Windows native remote access</li>
+                        <li><strong>Virtual Network Computing (VNC):</strong> Cross-platform remote desktop</li>
+                        <li><strong>SSH (Secure Shell):</strong> Secure command-line remote access</li>
+                        <li><strong>Telnet:</strong> Legacy remote access (security concerns)</li>
+                        <li><strong>Third-party tools:</strong> TeamViewer, LogMeIn, Chrome Remote Desktop</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>VPN Technologies</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Site-to-site VPN connections</li>
+                        <li>Client-to-site VPN access</li>
+                        <li>SSL/TLS VPN implementations</li>
+                        <li>IPSec VPN protocols and configuration</li>
+                        <li>Split tunneling and routing considerations</li>
+                        <li>VPN client software and mobile access</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-card">
+                <h3>Remote Access Security</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Multi-factor authentication (MFA) implementation</li>
+                        <li>Network access control and firewalls</li>
+                        <li>Session encryption and data protection</li>
+                        <li>Access logging and monitoring</li>
+                        <li>Remote access policies and procedures</li>
+                        <li>Incident response for security breaches</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="content-section">
+            <h2>Practice Quiz</h2>
+            <div class="quiz-container">
+                <div id="quiz-content">
+                    <!-- Quiz questions will be dynamically loaded here -->
+                </div>
+                <div class="score-display" id="score-display" style="display: none;">
+                    <h3>Quiz Complete!</h3>
+                    <p id="final-score"></p>
+                    <button class="btn" onclick="restartQuiz()">Restart Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcards Section -->
+        <div id="flashcards" class="content-section">
+            <h2>Study Flashcards</h2>
+            <div id="flashcard-container">
+                <div class="flashcard" id="current-flashcard" onclick="flipCard()">
+                    <div class="flashcard-content flashcard-front">
+                        <h3 id="flashcard-question">Click to start studying!</h3>
+                    </div>
+                    <div class="flashcard-content flashcard-back">
+                        <p id="flashcard-answer">Ready to begin?</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" onclick="previousCard()">← Previous</button>
+                    <button class="btn" onclick="nextCard()">Next →</button>
+                    <button class="btn" onclick="shuffleCards()">Shuffle</button>
+                </div>
+                <div style="text-align: center; margin-top: 10px; color: white;">
+                    <span id="card-counter">Card 1 of 20</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Application state
+        let currentSection = 'overview';
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        let currentFlashcard = 0;
+        let isCardFlipped = false;
+
+        // Quiz questions data
+        const quizQuestions = [
+            {
+                question: "What is the primary purpose of change management in IT operations?",
+                options: [
+                    "To prevent all changes to IT systems",
+                    "To ensure changes are properly planned, tested, and documented",
+                    "To speed up system modifications",
+                    "To eliminate user access to systems"
+                ],
+                correct: 1,
+                explanation: "Change management ensures that all modifications to IT systems are properly planned, authorized, tested, and documented to minimize risks and maintain system stability."
+            },
+            {
+                question: "Which document should be consulted for proper disposal of computer components?",
+                options: [
+                    "User manual",
+                    "Warranty documentation",
+                    "Material Safety Data Sheet (MSDS)",
+                    "Software license agreement"
+                ],
+                correct: 2,
+                explanation: "The Material Safety Data Sheet (MSDS) provides important safety information about chemical products and proper disposal procedures for potentially hazardous materials."
+            },
+            {
+                question: "What is the most important consideration when working inside a computer case?",
+                options: [
+                    "Using the fastest tools available",
+                    "Wearing gloves at all times",
+                    "Proper ESD (Electrostatic Discharge) protection",
+                    "Having adequate lighting"
+                ],
+                correct: 2,
+                explanation: "ESD protection is critical when working with computer components as static electricity can damage sensitive electronic components."
+            },
+            {
+                question: "Which scripting language is primarily used for Windows system administration?",
+                options: [
+                    "Bash",
+                    "Python",
+                    "PowerShell",
+                    "JavaScript"
+                ],
+                correct: 2,
+                explanation: "PowerShell is Microsoft's native scripting language designed specifically for Windows system administration and automation tasks."
+            },
+            {
+                question: "What does PII stand for in the context of data privacy?",
+                options: [
+                    "Personal Internet Information",
+                    "Personally Identifiable Information",
+                    "Private Internal Intelligence",
+                    "Protected Information Interface"
+                ],
+                correct: 1,
+                explanation: "PII (Personally Identifiable Information) refers to any data that could potentially identify a specific individual and must be protected according to privacy regulations."
+            },
+            {
+                question: "Which remote access protocol provides encrypted command-line access?",
+                options: [
+                    "Telnet",
+                    "RDP",
+                    "SSH",
+                    "VNC"
+                ],
+                correct: 2,
+                explanation: "SSH (Secure Shell) provides encrypted remote command-line access to systems, making it secure for remote administration over untrusted networks."
+            },
+            {
+                question: "What is the recommended approach when a customer is angry about a technical issue?",
+                options: [
+                    "Argue your point to prove technical competence",
+                    "Listen actively and acknowledge their concerns",
+                    "Immediately escalate to management",
+                    "Blame the issue on user error"
+                ],
+                correct: 1,
+                explanation: "Active listening and acknowledging customer concerns helps de-escalate situations and demonstrates professionalism in technical support roles."
+            },
+            {
+                question: "Which backup strategy provides the best protection against local disasters?",
+                options: [
+                    "Daily local backups",
+                    "RAID configuration",
+                    "Off-site or cloud backups",
+                    "Multiple local drives"
+                ],
+                correct: 2,
+                explanation: "Off-site or cloud backups protect against local disasters like fires, floods, or theft that could destroy on-site backup systems."
+            }
+        ];
+
+        // Flashcard data
+        const flashcards = [
+            {
+                question: "What is Change Management?",
+                answer: "A systematic approach to dealing with changes in IT systems, including planning, approval, implementation, and documentation processes."
+            },
+            {
+                question: "What does MSDS stand for?",
+                answer: "Material Safety Data Sheet - a document containing safety information about chemical products and proper handling/disposal procedures."
+            },
+            {
+                question: "Define ESD",
+                answer: "Electrostatic Discharge - the sudden flow of electricity between two objects caused by static electricity, which can damage sensitive electronic components."
+            },
+            {
+                question: "What is an Acceptable Use Policy (AUP)?",
+                answer: "A policy that outlines the appropriate use of company IT resources, including acceptable behaviors and prohibited activities."
+            },
+            {
+                question: "What is PowerShell?",
+                answer: "Microsoft's command-line shell and scripting language designed for system administration and automation in Windows environments."
+            },
+            {
+                question: "What does SSH stand for?",
+                answer: "Secure Shell - a cryptographic network protocol for secure remote access and command execution over unsecured networks."
+            },
+            {
+                question: "What is PII?",
+                answer: "Personally Identifiable Information - any data that could potentially identify a specific individual, requiring special protection."
+            },
+            {
+                question: "What is RDP?",
+                answer: "Remote Desktop Protocol - Microsoft's proprietary protocol for remote access to Windows systems with graphical user interface."
+            },
+            {
+                question: "What is a UPS?",
+                answer: "Uninterruptible Power Supply - a device that provides emergency power to connected equipment when main power fails."
+            },
+            {
+                question: "What is VNC?",
+                answer: "Virtual Network Computing - a remote desktop sharing protocol that allows control of another computer over a network."
+            },
+            {
+                question: "What is a Rollback Plan?",
+                answer: "A predetermined procedure to restore systems to their previous state if a change implementation fails or causes problems."
+            },
+            {
+                question: "What is Incident Response?",
+                answer: "The systematic approach to managing and addressing security breaches, system failures, or other IT incidents."
+            },
+            {
+                question: "What is EULA?",
+                answer: "End User License Agreement - a legal contract between software developer and user outlining terms and conditions of software use."
+            },
+            {
+                question: "What is DRM?",
+                answer: "Digital Rights Management - technologies that restrict the use, modification, and distribution of copyrighted digital content."
+            },
+            {
+                question: "What is Asset Inventory?",
+                answer: "A comprehensive list of all IT assets including hardware, software, and licenses, typically tracked for management and compliance purposes."
+            },
+            {
+                question: "What is Split Tunneling?",
+                answer: "A VPN feature that allows some traffic to go through the VPN tunnel while other traffic accesses the internet directly."
+            },
+            {
+                question: "What is Multi-Factor Authentication (MFA)?",
+                answer: "A security method requiring two or more verification factors to gain access to a resource, system, or application."
+            },
+            {
+                question: "What is a Knowledge Base?",
+                answer: "A centralized repository of information, procedures, and solutions used to support troubleshooting and problem resolution."
+            },
+            {
+                question: "What is Business Continuity?",
+                answer: "The planning and preparation to ensure critical business functions can continue during and after a disaster or disruption."
+            },
+            {
+                question: "What is a Ticketing System?",
+                answer: "A software application used to track, manage, and resolve customer issues and IT support requests."
+            }
+        ];
+
+        // Navigation functions
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all nav buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            currentSection = sectionId;
+            updateProgress();
+            
+            // Initialize section-specific content
+            if (sectionId === 'quiz') {
+                initializeQuiz();
+            } else if (sectionId === 'flashcards') {
+                initializeFlashcards();
+            }
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            const sections = ['overview', 'documentation', 'safety', 'professionalism', 'scripting', 'remote', 'quiz', 'flashcards'];
+            const currentIndex = sections.indexOf(currentSection);
+            const progress = ((currentIndex + 1) / sections.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // Quiz functionality
+        function initializeQuiz() {
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            document.getElementById('score-display').style.display = 'none';
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            if (currentQuizQuestion >= quizQuestions.length) {
+                showQuizResults();
+                return;
+            }
+
+            const question = quizQuestions[currentQuizQuestion];
+            const quizContent = document.getElementById('quiz-content');
+            
+            quizContent.innerHTML = `
+                <div class="quiz-question">
+                    <h4>Question ${currentQuizQuestion + 1} of ${quizQuestions.length}</h4>
+                    <p>${question.question}</p>
+                    <div class="quiz-options">
+                        ${question.options.map((option, index) => 
+                            `<div class="quiz-option" onclick="selectAnswer(${index})">${option}</div>`
+                        ).join('')}
+                    </div>
+                    <button class="btn" onclick="submitAnswer()" id="submit-btn" style="display: none;">Submit Answer</button>
+                    <button class="btn" onclick="nextQuestion()" id="next-btn" style="display: none;">Next Question</button>
+                    <div id="explanation" style="display: none; margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 5px;"></div>
+                </div>
+            `;
+        }
+
+        let selectedAnswerIndex = -1;
+
+        function selectAnswer(index) {
+            selectedAnswerIndex = index;
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((option, i) => {
+                option.classList.remove('selected');
+                if (i === index) {
+                    option.classList.add('selected');
+                }
+            });
+            document.getElementById('submit-btn').style.display = 'inline-block';
+        }
+
+        function submitAnswer() {
+            if (selectedAnswerIndex === -1) return;
+
+            const question = quizQuestions[currentQuizQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedAnswerIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+                option.onclick = null; // Disable further clicks
+            });
+
+            if (selectedAnswerIndex === question.correct) {
+                quizScore++;
+            }
+
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'inline-block';
+            
+            const explanationDiv = document.getElementById('explanation');
+            explanationDiv.innerHTML = `<strong>Explanation:</strong> ${question.explanation}`;
+            explanationDiv.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuizQuestion++;
+            selectedAnswerIndex = -1;
+            showQuizQuestion();
+        }
+
+        function showQuizResults() {
+            const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+            const scoreDisplay = document.getElementById('score-display');
+            const finalScore = document.getElementById('final-score');
+            
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excellent work! You\'re well prepared for this domain.';
+            } else if (percentage >= 70) {
+                message = 'Good job! Review the areas you missed for better preparation.';
+            } else {
+                message = 'Keep studying! Focus on the fundamental concepts covered in this domain.';
+            }
+            
+            finalScore.innerHTML = `
+                You scored ${quizScore} out of ${quizQuestions.length} (${percentage}%)<br>
+                ${message}
+            `;
+            
+            document.getElementById('quiz-content').style.display = 'none';
+            scoreDisplay.style.display = 'block';
+        }
+
+        function restartQuiz() {
+            document.getElementById('quiz-content').style.display = 'block';
+            initializeQuiz();
+        }
+
+        // Flashcard functionality
+        function initializeFlashcards() {
+            currentFlashcard = 0;
+            isCardFlipped = false;
+            showFlashcard();
+        }
+
+        function showFlashcard() {
+            const card = flashcards[currentFlashcard];
+            document.getElementById('flashcard-question').textContent = card.question;
+            document.getElementById('flashcard-answer').textContent = card.answer;
+            document.getElementById('card-counter').textContent = `Card ${currentFlashcard + 1} of ${flashcards.length}`;
+            
+            // Reset card to front
+            const flashcard = document.getElementById('current-flashcard');
+            flashcard.classList.remove('flipped');
+            isCardFlipped = false;
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('current-flashcard');
+            flashcard.classList.toggle('flipped');
+            isCardFlipped = !isCardFlipped;
+        }
+
+        function nextCard() {
+            currentFlashcard = (currentFlashcard + 1) % flashcards.length;
+            showFlashcard();
+        }
+
+        function previousCard() {
+            currentFlashcard = (currentFlashcard - 1 + flashcards.length) % flashcards.length;
+            showFlashcard();
+        }
+
+        function shuffleCards() {
+            for (let i = flashcards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+            }
+            currentFlashcard = 0;
+            showFlashcard();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (currentSection === 'flashcards') {
+                switch(event.key) {
+                    case ' ':
+                    case 'Enter':
+                        event.preventDefault();
+                        flipCard();
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        previousCard();
+                        break;
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        nextCard();
+                        break;
+                }
+            }
+        });
+
+        // Initialize application
+        updateProgress();
+    </script>
+</body>
+</html>
