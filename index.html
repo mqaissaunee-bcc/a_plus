@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 1 & Core 2 Course</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-link.coming-soon {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .nav-link.coming-soon:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .nav-link.coming-soon::before {
+            display: none;
+        }
+
+        .progress-info {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .progress-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .progress-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: #555;
+            transform: scale(1.02);
+        }
+
+        .domain-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>CompTIA A+ Certification Course</h1>
+            <p class="subtitle">Core 1 (220-1101) & Core 2 (220-1201) Study Materials</p>
+        </header>
+
+        <div class="course-grid">
+            <div class="course-card">
+                <h3>📚 Course Overview</h3>
+                <p>Comprehensive study guide comparing the A+ Core 1 and Core 2 exams, highlighting key differences and study strategies.</p>
+                <div class="nav-links">
+                    <a href="a_plus_1101vs1201.html" class="nav-link">A+ 1101 vs 1201 Comparison</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 1</div>
+                <h3>🖥️ Domain 1: Mobile Devices</h3>
+                <p>Learn about mobile device hardware, network connectivity, and application support including tablets, smartphones, and wearable technology.</p>
+                <div class="nav-links">
+                    <a href="a_plus_domain_1.html" class="nav-link">Domain 1 Materials</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 1</div>
+                <h3>🔧 Domain 2: Networking</h3>
+                <p>Master networking fundamentals, TCP/IP, wireless technologies, network troubleshooting, and network services.</p>
+                <div class="nav-links">
+                    <a href="a_plus_domain_2.html" class="nav-link">Domain 2 Materials</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 1</div>
+                <h3>💻 Domain 3: Hardware</h3>
+                <p>Explore computer hardware components, cable management, power supplies, storage devices, and system assembly.</p>
+                <div class="nav-links">
+                    <a href="a_plus_domain_3.html" class="nav-link">Domain 3 Materials</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 1</div>
+                <h3>☁️ Domain 4: Cloud & Virtualization</h3>
+                <p>Understanding cloud computing concepts, virtualization technologies, and modern infrastructure solutions.</p>
+                <div class="nav-links">
+                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 1</div>
+                <h3>🔍 Domain 5: Troubleshooting</h3>
+                <p>Develop systematic troubleshooting methodologies for hardware and network issues with hands-on scenarios.</p>
+                <div class="nav-links">
+                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 2</div>
+                <h3>🪟 Domain 1: Operating Systems</h3>
+                <p>Windows, macOS, and Linux operating system installation, configuration, and management techniques.</p>
+                <div class="nav-links">
+                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 2</div>
+                <h3>🔒 Domain 2: Security</h3>
+                <p>Information security fundamentals, threat mitigation, and best practices for personal and enterprise environments.</p>
+                <div class="nav-links">
+                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 2</div>
+                <h3>📱 Domain 3: Software Troubleshooting</h3>
+                <p>Application issues, malware removal, and software-related problem resolution strategies.</p>
+                <div class="nav-links">
+                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="domain-badge">Core 2</div>
+                <h3>🛠️ Domain 4: Operational Procedures</h3>
+                <p>Professional communication, documentation practices, safety procedures, and environmental considerations.</p>
+                <div class="nav-links">
+                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-info">
+            <h3>🚀 Course Progress</h3>
+            <p>This course is actively being developed. New domains and materials are added regularly.</p>
+            <p>Current Status: <strong>Domains 1-3 Available</strong> | Remaining domains coming soon</p>
+            <a href="https://github.com" class="github-link" target="_blank">📖 View on GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
