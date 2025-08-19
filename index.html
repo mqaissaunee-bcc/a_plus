@@ -305,7 +305,7 @@
                 <h3>📱 Domain 3: Software Troubleshooting</h3>
                 <p>Application issues, malware removal, and software-related problem resolution strategies.</p>
                 <div class="nav-links">
-                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                    <a href="a_plus_core2_domain3.html" class="nav-link">Domain 3 Materials</a>
                 </div>
             </div>
 
@@ -314,67 +314,29 @@
                 <h3>🛠️ Domain 4: Operational Procedures</h3>
                 <p>Professional communication, documentation practices, safety procedures, and environmental considerations.</p>
                 <div class="nav-links">
-                    <a href="#" class="nav-link coming-soon">Coming Soon</a>
+                    <a href="a_plus_core2_domain4.html" class="nav-link">Domain 4 Materials</a>
                 </div>
             </div>
 
             <div class="course-card">
                 <h3>🧭 Navigation Tools</h3>
-                <p>Quick access to course resources, study guides, and helpful navigation tools for your A+ certification journey.</p>
+                <p>Quick access to course navigation and study tools for your A+ certification journey.</p>
                 <div class="nav-links">
-                    <a href="#overview" class="nav-link" onclick="scrollToSection('overview')">Course Overview</a>
-                    <a href="#core1" class="nav-link" onclick="scrollToSection('core1')">Core 1 Domains</a>
-                    <a href="#core2" class="nav-link" onclick="scrollToSection('core2')">Core 2 Domains</a>
-                    <a href="#top" class="nav-link" onclick="scrollToTop()">Back to Top</a>
+                    <a href="index.html" class="nav-link">🏠 Return to Main Page</a>
+                    <a href="a_plus_domain_1.html" class="nav-link">📱 Previous Domain</a>
+                    <a href="a_plus_domain_2.html" class="nav-link">🔧 Next Domain</a>
+                    <a href="a_plus_certification_overview.html" class="nav-link">📚 Certification Guide</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function scrollToSection(sectionId) {
-            if (sectionId === 'overview') {
-                // Scroll to the overview cards (first two cards)
-                document.querySelector('.course-grid').scrollIntoView({ behavior: 'smooth' });
-            } else if (sectionId === 'core1') {
-                // Scroll to Core 1 domains
-                const core1Cards = document.querySelectorAll('.domain-badge');
-                if (core1Cards.length > 0) {
-                    core1Cards[0].closest('.course-card').scrollIntoView({ behavior: 'smooth' });
-                }
-            } else if (sectionId === 'core2') {
-                // Scroll to Core 2 domains
-                const domainBadges = document.querySelectorAll('.domain-badge');
-                const core2Badge = Array.from(domainBadges).find(badge => 
-                    badge.textContent.trim() === 'Core 2'
-                );
-                if (core2Badge) {
-                    core2Badge.closest('.course-card').scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Add some visual indicators for completed vs upcoming content
+        // Add visual indicators for completed content
         document.addEventListener('DOMContentLoaded', function() {
-            const completedSections = [
-                'a_plus_certification_overview.html',
-                'a_plus_1101vs1201.html',
-                'a_plus_domain_1.html',
-                'a_plus_domain_2.html',
-                'a_plus_domain_3.html',
-                'a_plus_domain_4.html',
-                'a_plus_domain_5.html',
-                'a_plus_core2_domain1.html',
-                'a_plus_core2_domain2.html'
-            ];
-            
             // Add completed indicator to available links
             document.querySelectorAll('.nav-link:not(.coming-soon)').forEach(link => {
-                if (!link.hasAttribute('onclick')) {
+                if (link.getAttribute('href') && !link.getAttribute('href').startsWith('#') && !link.getAttribute('href').includes('index.html')) {
                     link.style.position = 'relative';
                     const checkmark = document.createElement('span');
                     checkmark.innerHTML = ' ✓';
